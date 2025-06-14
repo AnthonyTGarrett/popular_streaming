@@ -1,0 +1,25 @@
+{
+  "name": "popular_streaming",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server",
+    "dev": "node --watch --env-file=.env server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyTGarrett/popular_streaming.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnthonyTGarrett/popular_streaming/issues"
+  },
+  "homepage": "https://github.com/AnthonyTGarrett/popular_streaming#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
