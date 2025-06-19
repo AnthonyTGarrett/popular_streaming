@@ -20,6 +20,7 @@
   "homepage": "https://github.com/AnthonyTGarrett/popular_streaming#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "streaming-availability": "^4.4.0"
   }
 }
