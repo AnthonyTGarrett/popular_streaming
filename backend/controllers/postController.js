@@ -29,46 +29,43 @@ export const getShowFromTitle = async (req, res, next) => {
     title: title,
   });
 
-  if (res.status === 400) {
-    return res.status(400).json({ message: 'Please include a title' });
-    // const error = new Error(`Please include a title`);
-    // error.status = 400;
-    // return next(error);
-  }
+  res.status(200).json(data);
+};
+
+// @desc Get Top Series by Service
+// @route PUT /api/shows/top/series/:service
+export const getTopSeries = async (req, res, next) => {
+  const service = req.params.series;
+
+  const data = await client.showsApi.getTopShows({
+    country: 'us',
+    service: service,
+    showType: 'series',
+  });
 
   res.status(200).json(data);
 };
 
-// @desc Get single post
+// @desc Get Top Movies by Service
+// @route PUT /api/shows/top/movies/:service
+export const getTopMovies = async (req, res, next) => {
+  const service = req.params.movie;
+
+  const data = await client.showsApi.getTopShows({
+    country: 'us',
+    service: service,
+    showType: 'movie',
+  });
+
+  res.status(200).json(data);
+};
+
+// @desc Series and Movies by multiple filters
 // @route GET /api/posts/:id
-export const getShowFromFilter = (req, res, next) => {
-  const id = parseInt(req.params.id);
-  // console.log(id);
-  // res.json(posts.filter(post => post.id === id));
-  const post = posts.find(post => post.id === id);
-  if (!post) {
-    const error = new Error(`A post with the id of ${id} was not found`);
-    error.status = 404;
-    return next(error);
-    // return res
-    //   .status(404)
-    //   .json({ msg: `A post with the id of ${id} was not found` });
-  }
+export const getShowFromFilter = async (req, res, next) => {
+  const incoming = req.body;
+
+  const data = await client.showsApi.searchShowsByFilters(incoming);
+
   res.status(200).json(data);
-};
-
-// @desc Update post
-// @route PUT /api/posts/:id
-export const getTopShows = (req, res, next) => {
-  const id = parseInt(req.params.id);
-  const post = posts.find(post => post.id === id);
-
-  if (!post) {
-    const error = new Error(`A post with the id of ${id} was not found`);
-    error.status = 404;
-    return next(error);
-  }
-
-  post.title = req.body.title;
-  res.status(200).json(posts);
 };

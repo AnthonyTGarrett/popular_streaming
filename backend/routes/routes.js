@@ -3,7 +3,8 @@ import {
   getShowFromId,
   getShowFromFilter,
   getShowFromTitle,
-  getTopShows,
+  getTopSeries,
+  getTopMovies,
 } from '../controllers/postController.js';
 const router = express.Router();
 
@@ -11,12 +12,12 @@ const router = express.Router();
 router.get('/:id', getShowFromId);
 
 // Get shows from filtered input
-router.post('/search/filters/:filter', getShowFromFilter);
+router.post('/search/filters/', getShowFromFilter);
 
-// Update Post
 router.get('/search/title/:title', getShowFromTitle);
 
-// Delete Post
-router.get('/top/:network', getTopShows);
+router.get('/top/series/:series', getTopSeries);
+
+router.get('/top/movies/:movie', getTopMovies);
 
 export default router;
