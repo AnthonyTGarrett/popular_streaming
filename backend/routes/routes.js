@@ -1,24 +1,22 @@
 import express from 'express';
 import {
-  getPosts,
-  getPost,
-  createPost,
-  updatePost,
-  deletePost,
+  getShowFromId,
+  getShowFromFilter,
+  getShowFromTitle,
+  getTopShows,
 } from '../controllers/postController.js';
 const router = express.Router();
 
-// Get a single post
-// Only passing next because of the error middleware
+// Get a show from the ID
 router.get('/:id', getShowFromId);
 
-// Create a new Post
-router.get('/search/filters/:filter', getShowFromFilter);
+// Get shows from filtered input
+router.post('/search/filters/:filter', getShowFromFilter);
 
 // Update Post
 router.get('/search/title/:title', getShowFromTitle);
 
 // Delete Post
-router.delete('/top/:network', getTopShows);
+router.get('/top/:network', getTopShows);
 
 export default router;

@@ -1,12 +1,42 @@
+import * as streamingAvailability from 'streaming-availability';
+const API_KEY = process.env.CLIENT_ID;
+const client = new streamingAvailability.Client(
+  new streamingAvailability.Configuration({
+    apiKey: API_KEY,
+  })
+);
+
+// tt0068646
+
 // @desc Get show by ID
 // @route GET /api/shows/id
-export const getShowFromId = (req, res, next) => {
-  const limit = parseInt(req.query.limit);
+export const getShowFromId = async (req, res, next) => {
+  const id = req.params.id;
 
-  if (!isNaN(limit) && limit > 0) {
-    return res.status(200).json(posts.slice(0, limit));
+  const data = await client.showsApi.getShow({
+    id: id,
+  });
+
+  res.status(200).json(data);
+};
+
+// @desc Get show from Title
+// @route POST /api/shows/search/title/:title
+export const getShowFromTitle = async (req, res, next) => {
+  const title = req.params.title;
+  const data = await client.showsApi.searchShowsByTitle({
+    country: 'us',
+    title: title,
+  });
+
+  if (res.status === 400) {
+    return res.status(400).json({ message: 'Please include a title' });
+    // const error = new Error(`Please include a title`);
+    // error.status = 400;
+    // return next(error);
   }
-  res.status(200).json(posts);
+
+  res.status(200).json(data);
 };
 
 // @desc Get single post
@@ -24,32 +54,12 @@ export const getShowFromFilter = (req, res, next) => {
     //   .status(404)
     //   .json({ msg: `A post with the id of ${id} was not found` });
   }
-  res.status(200).json(post);
-};
-
-// @desc Create new post
-// @route POST /api/posts
-export const createPost = (req, res, next) => {
-  const newPost = {
-    id: posts.length + 1,
-    title: req.body.title,
-  };
-
-  if (!newPost.title) {
-    // return res.status(400).json({ message: 'Please include a title' });
-    const error = new Error(`Please include a title`);
-    error.status = 400;
-    return next(error);
-  }
-
-  posts.push(newPost);
-
-  res.status(201).json(posts);
+  res.status(200).json(data);
 };
 
 // @desc Update post
 // @route PUT /api/posts/:id
-export const updatePost = (req, res, next) => {
+export const getTopShows = (req, res, next) => {
   const id = parseInt(req.params.id);
   const post = posts.find(post => post.id === id);
 
@@ -60,23 +70,5 @@ export const updatePost = (req, res, next) => {
   }
 
   post.title = req.body.title;
-  res.status(200).json(posts);
-};
-
-// @desc Delete post
-// @route DELETE /api/posts/:id
-export const deletePost = (req, res, next) => {
-  const id = parseInt(req.params.id);
-  const post = posts.find(post => post.id === id);
-
-  if (!post) {
-    // return res
-    //   .status(404)
-    //   .json({ msg: `A post with the id of ${id} was not found` });
-    const error = new Error(`A post with the id of ${id} was not found`);
-    error.status = 404;
-    return next(error);
-  }
-  posts = posts.filter(post => post.id !== id);
   res.status(200).json(posts);
 };
