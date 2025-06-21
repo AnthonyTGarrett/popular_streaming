@@ -1,7 +1,5 @@
 // Library provided by streaming Availability to access the API
 import * as streamingAvailability from 'streaming-availability';
-import { db } from '../connect.js';
-import bcrypt from 'bcryptjs';
 
 const saltRounds = 10;
 
@@ -106,69 +104,4 @@ export const getShowFromFilter = async (req, res, next) => {
 
   const data = await client.showsApi.searchShowsByFilters(incoming);
   res.status(200).json(data);
-};
-
-export const testDB = (req, res, next) => {
-  res.set('content-type', 'application/json');
-  const sql = 'SELECT * FROM users';
-  let data = { users: [] };
-  try {
-    db.all(sql, [], (err, rows) => {
-      if (err) {
-        throw err;
-      }
-      rows.forEach(row => {
-        data.users.push({
-          id: row.id,
-          username: row.username,
-          email: row.email,
-          password: row.password,
-          firstName: row.firstName,
-          lastName: row.lastName,
-        });
-      });
-      let content = JSON.stringify(data);
-      res.send(content);
-    });
-  } catch (err) {
-    console.error('Error: ', err.message);
-    res.status(400);
-  }
-};
-
-export const testAdd = (req, res, next) => {
-  res.set('content-type', 'application/json');
-  const sql =
-    'INSERT INTO users(username, password, email, firstName, lastName) VALUES(?, ?, ?, ?, ?)';
-  let newId;
-
-  try {
-    db.run(
-      sql,
-      [
-        req.body.username,
-        req.body.password,
-        req.body.email,
-        req.body.firstName,
-        req.body.lastName,
-      ],
-      function (err) {
-        if (err) throw err;
-        newId = this.lastID;
-        res.status(201);
-        let data = { status: 201, message: `User ${newId}` };
-        let content = JSON.stringify(data);
-        res.send(content);
-      }
-    );
-  } catch (err) {
-    if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
-      // Check for unique constraint violation
-      res
-        .status(409)
-        .json({ error: 'Duplicate entry: unique value already exists' }); // 409 Conflict
-    } else {
-      next(err); // Pass other errors to the global error handler
-    }
-  }
 };

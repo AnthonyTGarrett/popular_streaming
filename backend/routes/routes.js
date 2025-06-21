@@ -5,9 +5,7 @@ import {
   getShowFromTitle,
   getTopSeries,
   getTopMovies,
-  testDB,
-  testAdd,
-} from '../controllers/postController.js';
+} from '../controllers/showController.js';
 const router = express.Router();
 
 // Get a show from the ID
@@ -21,8 +19,5 @@ router.get('/search/title/:title', getShowFromTitle);
 router.get('/top/series/:series', getTopSeries);
 
 router.get('/top/movies/:movie', getTopMovies);
-
-router.get('/', testDB);
-router.post('/', testAdd);
 
 export default router;
