@@ -29,7 +29,7 @@ export const getUsers = (req, res, next) => {
   }
 };
 
-export const addUser = (req, res, next) => {
+export const addUser = async (req, res, next) => {
   res.set('content-type', 'application/json');
   const sql =
     'INSERT INTO users(username, password, email, firstName, lastName) VALUES(?, ?, ?, ?, ?)';
@@ -40,7 +40,7 @@ export const addUser = (req, res, next) => {
       sql,
       [
         req.body.username,
-        req.body.password,
+        await hashPassword(req.body.password),
         req.body.email,
         req.body.firstName,
         req.body.lastName,
@@ -65,3 +65,16 @@ export const addUser = (req, res, next) => {
     }
   }
 };
+
+async function hashPassword(password) {
+  try {
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
+    console.log(hash);
+    return hash;
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+    return null;
+  }
+}

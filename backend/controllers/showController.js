@@ -1,8 +1,6 @@
 // Library provided by streaming Availability to access the API
 import * as streamingAvailability from 'streaming-availability';
 
-const saltRounds = 10;
-
 const API_KEY = process.env.CLIENT_ID;
 const client = new streamingAvailability.Client(
   new streamingAvailability.Configuration({
