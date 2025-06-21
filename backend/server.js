@@ -2,6 +2,7 @@ import express from 'express';
 import routes from './routes/routes.js';
 import cors from 'cors';
 import errorHandler from './middleware/error.js';
+
 const port = process.env.PORT || 8000;
 
 const app = express();
@@ -10,7 +11,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use('/api/shows', routes);
+app.use('/api', routes);
 
 app.use(errorHandler);
 
