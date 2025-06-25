@@ -29,11 +29,12 @@ export const getUsers = (req, res, next) => {
   }
 };
 
+// Function to add a new User to the database
+// Requires 5 pieces of information to add a new user
 export const addUser = async (req, res, next) => {
   res.set('content-type', 'application/json');
   const sql =
     'INSERT INTO users(username, password, email, firstName, lastName) VALUES(?, ?, ?, ?, ?)';
-  let newId;
 
   try {
     db.run(
@@ -47,9 +48,8 @@ export const addUser = async (req, res, next) => {
       ],
       function (err) {
         if (err) throw err;
-        newId = this.lastID;
         res.status(201);
-        let data = { status: 201, message: `User ${newId}` };
+        let data = { status: 201, message: `User ${req.body.firstName}` };
         let content = JSON.stringify(data);
         res.send(content);
       }
@@ -66,12 +66,42 @@ export const addUser = async (req, res, next) => {
   }
 };
 
+// Returns all shows in the users watched table
+export const getWatchedShows = async (req, res, next) => {
+  res.set('content-type', 'application/json');
+
+  const sql = `SELECT * FROM ShowsWatched WHERE user_id = ${req.params.id}`;
+  let data = { Movies: [] };
+
+  try {
+    db.all(sql, [], (err, rows) => {
+      if (err) {
+        throw err;
+      }
+      rows.forEach(row => {
+        data.Movies.push({
+          imdbId: row.imdbId,
+          title: row.title,
+          showType: row.showType,
+          overview: row.overview,
+        });
+      });
+    });
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+    return null;
+  }
+};
+export const getWatchList = async (req, res, next) => {};
+
+// Function to hash the password
+// This function is used to hash the password with bcrypt before storing it in the database
+
 async function hashPassword(password) {
   try {
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(password, salt);
-    console.log(hash);
     return hash;
   } catch (err) {
     console.error(`Error: ${err.message}`);
