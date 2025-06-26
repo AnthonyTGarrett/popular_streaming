@@ -55,7 +55,7 @@ export const addUser = async (req, res, next) => {
       }
     );
   } catch (err) {
-    if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+    if (err === 'SQLITE_CONSTRAINT') {
       // Check for unique constraint violation
       res
         .status(409)
