@@ -63,15 +63,15 @@ export const addUser = async (req, res, next) => {
         req.body.username,
         await hashPassword(req.body.password),
         req.body.email,
-        req.body.firstName || 'none',
-        req.body.lastName || 'none',
+        req.body.firstName || 'unknown',
+        req.body.lastName || 'unknown',
       ],
       function (err) {
         if (err) throw err;
         res.status(201);
         let data = {
           status: 201,
-          message: `User ${req.body.firstName} ${req.body.lastName}`,
+          message: `User ${req.body.firstName} ${req.body.lastName} added`,
         };
         let content = JSON.stringify(data);
         res.send(content);

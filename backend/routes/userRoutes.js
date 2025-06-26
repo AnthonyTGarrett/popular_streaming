@@ -9,7 +9,9 @@ const userRouter = express.Router();
 
 userRouter.get('/', getUsers);
 userRouter.post('/', addUser);
-userRouter.get('/shows/watched/:id', getWatchedShows);
-userRouter.get('/shows/watchlist', getWatchList);
+// userRouter.post('/login', login);
+// userRouter.post('/logout', logout);
+userRouter.post('/shows/watched/', getWatchedShows);
+userRouter.post('/shows/watchlist/', getWatchList);
 
 export default userRouter;
