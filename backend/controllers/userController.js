@@ -1,5 +1,6 @@
 import { db } from '../connect.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 // Function for simply testing pulling user information out of the database
 // Not for production use
@@ -22,8 +23,7 @@ export const getUsers = (req, res, next) => {
           lastName: row.lastName,
         });
       });
-      let content = JSON.stringify(data);
-      res.send(content);
+      res.status(200).json(data);
     });
   } catch (err) {
     console.error('Error: ', err.message);
@@ -39,17 +39,34 @@ export const addUser = async (req, res, next) => {
   // Query the database to determine if a user with the username or email already exists
   const usernameTest = `SELECT * FROM Users WHERE username = ?`;
   const emailTest = `SELECT * FROM Users WHERE email = ?`;
+  const { username, password, email, firstName, lastName } = req.body;
 
-  if (await fetchFirst(db, usernameTest, req.body.username)) {
+  if (await fetchFirst(db, usernameTest, username)) {
     const error = new Error(`An account already exists with that username`);
     error.status = 400;
     return next(error);
   }
 
-  if (await fetchFirst(db, emailTest, req.body.email)) {
+  if (await fetchFirst(db, emailTest, email)) {
     const error = new Error(
       `An account already exists with that email address`
     );
+    error.status = 400;
+    return next(error);
+  }
+
+  if (!username || !email || !password) {
+    const error = new Error(
+      `No blank fields are allowed. Please fill in all required fields.`
+    );
+    error.status = 400;
+    return next(error);
+  }
+
+  const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+  if (!emailRegex.test(email)) {
+    const error = new Error(`Invalid Email Address.`);
     error.status = 400;
     return next(error);
   }
@@ -60,18 +77,18 @@ export const addUser = async (req, res, next) => {
     db.run(
       sql,
       [
-        req.body.username,
-        await hashPassword(req.body.password),
-        req.body.email,
-        req.body.firstName || 'unknown',
-        req.body.lastName || 'unknown',
+        username,
+        await hashPassword(password),
+        email,
+        firstName || 'unknown',
+        lastName || 'unknown',
       ],
       function (err) {
         if (err) throw err;
         res.status(201);
         let data = {
           status: 201,
-          message: `User ${req.body.firstName} ${req.body.lastName} added`,
+          message: `User ${firstName} ${lastName} added`,
         };
         let content = JSON.stringify(data);
         res.send(content);
@@ -84,15 +101,46 @@ export const addUser = async (req, res, next) => {
   }
 };
 
+export const login = async (req, res, next) => {
+  const { username, password } = req.body;
+
+  const dbUser = `SELECT * FROM Users WHERE username = ?`;
+
+  const user = await fetchFirst(db, dbUser, username);
+  if (user) {
+    if (await bcrypt.compare(password, user.password)) {
+      const payload = {
+        sub: user.user_id,
+        username: username,
+      };
+      const token = jwt.sign(payload, process.env.secretKey, {
+        expiresIn: '1h',
+      });
+      res.json({ token });
+    } else {
+      const error = new Error(`Invalid Username or Password.`);
+      error.status = 400;
+      return next(error);
+    }
+  } else {
+    const error = new Error(`Username does not exist.`);
+    error.status = 400;
+    return next(error);
+  }
+};
+
+export const addWatchedShow = async (req, res, next) => {};
+export const addWatchListShow = async (req, res, next) => {};
+
 // Returns all shows in the users watched table
 export const getWatchedShows = async (req, res, next) => {
   res.set('content-type', 'application/json');
 
-  const sql = `SELECT * FROM ShowsWatched WHERE user_id = ${req.params.id}`;
+  const sql = `SELECT * FROM ShowsWatched WHERE user_id = ?`;
   let data = { Movies: [] };
 
   try {
-    db.all(sql, [], (err, rows) => {
+    db.all(sql, [req.params.id], (err, rows) => {
       if (err) {
         throw err;
       }
