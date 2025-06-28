@@ -2,9 +2,11 @@ import express from 'express';
 import {
   getUsers,
   addUser,
-  getWatchedShows,
+  getWatched,
   getWatchList,
   login,
+  addWatchedShow,
+  addWatchListShow,
 } from '../controllers/userController.js';
 import { checkToken } from '../middleware/auth.js';
 
@@ -13,7 +15,10 @@ const userRouter = express.Router();
 userRouter.get('/', getUsers);
 userRouter.post('/register', addUser);
 userRouter.post('/login', login);
-userRouter.get('/watched/:id', checkToken, getWatchedShows);
-userRouter.get('/watchlist/:id', checkToken, getWatchList);
+
+userRouter.get('/watched', checkToken, getWatched);
+userRouter.get('/watchlist', checkToken, getWatchList);
+userRouter.post('add', checkToken, addWatchedShow);
+userRouter.post('addWatchList', checkToken, addWatchListShow);
 
 export default userRouter;

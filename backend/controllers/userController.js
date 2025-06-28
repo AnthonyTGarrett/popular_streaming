@@ -133,7 +133,7 @@ export const addWatchedShow = async (req, res, next) => {};
 export const addWatchListShow = async (req, res, next) => {};
 
 // Returns all shows in the users watched table
-export const getWatchedShows = async (req, res, next) => {
+export const getWatched = async (req, res, next) => {
   // res.set('content-type', 'application/json');
 
   // const sql = `SELECT * FROM ShowsWatched WHERE user_id = ?`;
@@ -157,7 +157,10 @@ export const getWatchedShows = async (req, res, next) => {
   //   console.error(`Error: ${err.message}`);
   //   return null;
   // }
-  res.status(200).json({ test: 'good', user_id: req.params.id });
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+
+  res.status(200).json({ access: 'good', user_id: user_id });
 };
 export const getWatchList = async (req, res, next) => {};
 
