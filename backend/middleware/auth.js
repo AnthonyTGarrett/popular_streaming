@@ -19,3 +19,5 @@ export const checkToken = (req, res, next) => {
     return next(error);
   }
 };
+
+export default checkToken;
