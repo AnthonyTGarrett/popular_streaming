@@ -116,7 +116,7 @@ export const login = async (req, res, next) => {
       const token = jwt.sign(payload, process.env.secretKey, {
         expiresIn: '1h',
       });
-      res.json({ token });
+      res.status(200).json({ token });
     } else {
       const error = new Error(`Invalid Username or Password.`);
       error.status = 400;
@@ -134,29 +134,30 @@ export const addWatchListShow = async (req, res, next) => {};
 
 // Returns all shows in the users watched table
 export const getWatchedShows = async (req, res, next) => {
-  res.set('content-type', 'application/json');
+  // res.set('content-type', 'application/json');
 
-  const sql = `SELECT * FROM ShowsWatched WHERE user_id = ?`;
-  let data = { Movies: [] };
+  // const sql = `SELECT * FROM ShowsWatched WHERE user_id = ?`;
+  // let data = { Movies: [] };
 
-  try {
-    db.all(sql, [req.params.id], (err, rows) => {
-      if (err) {
-        throw err;
-      }
-      rows.forEach(row => {
-        data.Movies.push({
-          imdbId: row.imdbId,
-          title: row.title,
-          showType: row.showType,
-          overview: row.overview,
-        });
-      });
-    });
-  } catch (err) {
-    console.error(`Error: ${err.message}`);
-    return null;
-  }
+  // try {
+  //   db.all(sql, [req.params.id], (err, rows) => {
+  //     if (err) {
+  //       throw err;
+  //     }
+  //     rows.forEach(row => {
+  //       data.Movies.push({
+  //         imdbId: row.imdbId,
+  //         title: row.title,
+  //         showType: row.showType,
+  //         overview: row.overview,
+  //       });
+  //     });
+  //   });
+  // } catch (err) {
+  //   console.error(`Error: ${err.message}`);
+  //   return null;
+  // }
+  res.status(200).json({ test: 'good', user_id: req.params.id });
 };
 export const getWatchList = async (req, res, next) => {};
 
