@@ -20,6 +20,7 @@
   "homepage": "https://github.com/AnthonyTGarrett/popular_streaming#readme",
   "description": "",
   "dependencies": {
+    "axios": "^1.10.0",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",

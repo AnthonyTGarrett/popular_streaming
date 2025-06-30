@@ -1,6 +1,8 @@
 import { db } from '../connect.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
+import { getShowFromId } from './showController.js';
 
 // Function for simply testing pulling user information out of the database
 // Not for production use
@@ -90,8 +92,7 @@ export const addUser = async (req, res, next) => {
           status: 201,
           message: `User ${firstName} ${lastName} added`,
         };
-        let content = JSON.stringify(data);
-        res.send(content);
+        res.json(data);
       }
     );
   } catch (error) {
@@ -129,40 +130,279 @@ export const login = async (req, res, next) => {
   }
 };
 
-export const addWatchedShow = async (req, res, next) => {};
-export const addWatchListShow = async (req, res, next) => {};
+export const addWatchedShow = async (req, res, next) => {
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+  const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
+  const imdbId = req.body.imdbId;
+
+  if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
+    const error = new Error('That show is already in your watched list.');
+    error.status = 400;
+    return next(error);
+  }
+  const response = await axios.get(
+    `http://localhost:${process.env.PORT}/api/${imdbId}`
+  );
+  const { showType, title, overview, rating } = response.data;
+
+  const sql = `INSERT INTO ShowsWatched(user_id, imdbId, showType, title, overview, rating, image) VALUES(?, ?, ?, ?, ?, ?, ?)`;
+  const inserts = [
+    user_id,
+    imdbId,
+    showType,
+    title,
+    overview,
+    rating,
+    response.data.imageSet.verticalPoster.w360,
+  ];
+  try {
+    db.run(sql, inserts, function (error) {
+      if (error) throw error;
+      res.status(201);
+      let updateMessage = {
+        status: 201,
+        message: `${
+          String(showType).charAt(0).toUpperCase() + String(showType).slice(1)
+        } ${title} has been added.`,
+      };
+      res.json(updateMessage);
+    });
+  } catch (error) {
+    error.message('Error inserting show into database.');
+    error.status = 400;
+    return next(error);
+  }
+};
+export const addWatchListShow = async (req, res, next) => {
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+  const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
+  const imdbId = req.body.imdbId;
+
+  if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
+    const error = new Error('You have already seen this show.');
+    error.status = 400;
+    return next(error);
+  }
+  const response = await axios.get(
+    `http://localhost:${process.env.PORT}/api/${imdbId}`
+  );
+  const { showType, title, overview, rating } = response.data;
+
+  const sql = `INSERT INTO ShowsToWatch(user_id, imdbId, showType, title, overview, rating, image) VALUES(?, ?, ?, ?, ?, ?, ?)`;
+  const inserts = [
+    user_id,
+    imdbId,
+    showType,
+    title,
+    overview,
+    rating,
+    response.data.imageSet.verticalPoster.w360,
+  ];
+  try {
+    db.run(sql, inserts, function (error) {
+      if (error) throw error;
+      res.status(201);
+      let updateMessage = {
+        status: 201,
+        message: `${
+          String(showType).charAt(0).toUpperCase() + String(showType).slice(1)
+        } ${title} has been added.`,
+      };
+      res.json(updateMessage);
+    });
+  } catch (error) {
+    error.message('Error inserting show into database.');
+    error.status = 400;
+    return next(error);
+  }
+};
+
+export const delWatchedShow = async (req, res, next) => {
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+  const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
+  const imdbId = req.body.imdbId;
+
+  if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
+    try {
+      const delSQL = `DELETE FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
+      const inserts = [imdbId, user_id];
+      db.run(delSQL, inserts, function (error) {
+        if (error) throw error;
+        res.status(201);
+        let updateMessage = {
+          status: 200,
+          message: `Show has been removed from your Watched Shows.`,
+        };
+        res.json(updateMessage);
+      });
+    } catch (error) {
+      error.message('Error deleting show from database.');
+      error.status = 400;
+      return next(error);
+    }
+  } else {
+    const error = new Error('This show is not in the Watched Show List.');
+    error.status = 400;
+    return next(error);
+  }
+};
+export const delWatchListShow = async (req, res, next) => {
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+  const showWatchedTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
+  const imdbId = req.body.imdbId;
+
+  if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
+    try {
+      const delSQL = `DELETE FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
+      const inserts = [imdbId, user_id];
+      db.run(delSQL, inserts, function (error) {
+        if (error) throw error;
+        res.status(201);
+        let updateMessage = {
+          status: 200,
+          message: `Show has been removed from your Watch List Shows.`,
+        };
+        res.json(updateMessage);
+      });
+    } catch (error) {
+      error.message('Error deleting show from database.');
+      error.status = 400;
+      return next(error);
+    }
+  } else {
+    const error = new Error('This show is not in the Watch List shows.');
+    error.status = 400;
+    return next(error);
+  }
+};
 
 // Returns all shows in the users watched table
 export const getWatched = async (req, res, next) => {
-  // res.set('content-type', 'application/json');
-
-  // const sql = `SELECT * FROM ShowsWatched WHERE user_id = ?`;
-  // let data = { Movies: [] };
-
-  // try {
-  //   db.all(sql, [req.params.id], (err, rows) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     rows.forEach(row => {
-  //       data.Movies.push({
-  //         imdbId: row.imdbId,
-  //         title: row.title,
-  //         showType: row.showType,
-  //         overview: row.overview,
-  //       });
-  //     });
-  //   });
-  // } catch (err) {
-  //   console.error(`Error: ${err.message}`);
-  //   return null;
-  // }
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).sub;
 
-  res.status(200).json({ access: 'good', user_id: user_id });
+  const sql = `SELECT * FROM ShowsWatched WHERE user_id = ?`;
+  let data = { Shows: [] };
+
+  if (await fetchFirst(db, sql, user_id)) {
+    try {
+      db.all(sql, user_id, (error, rows) => {
+        if (error) {
+          throw error;
+        }
+        rows.forEach(row => {
+          data.Shows.push({
+            user_id: row.user_id,
+            showType: row.showType,
+            imdbId: row.imdbId,
+            title: row.title,
+            overview: row.overview,
+            rating: row.rating,
+            image: row.image,
+          });
+        });
+
+        res.status(200).json(data);
+      });
+    } catch (error) {
+      error.message = 'Error retrieving watched shows.';
+      error.status = 400;
+      return next(error);
+    }
+  } else {
+    const error = new Error('Your watched shows is empty.');
+    error.status = 404;
+    return next(error);
+  }
 };
-export const getWatchList = async (req, res, next) => {};
+
+export const getWatchList = async (req, res, next) => {
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+
+  const sql = `SELECT * FROM ShowsToWatch WHERE user_id = ?`;
+  let data = { Shows: [] };
+
+  if (await fetchFirst(db, sql, user_id)) {
+    try {
+      db.all(sql, user_id, (error, rows) => {
+        if (error) {
+          throw error;
+        }
+        rows.forEach(row => {
+          data.Shows.push({
+            user_id: row.user_id,
+            showType: row.showType,
+            imdbId: row.imdbId,
+            title: row.title,
+            overview: row.overview,
+            rating: row.rating,
+            image: row.image,
+          });
+        });
+
+        res.status(200).json(data);
+      });
+    } catch (error) {
+      error.message = 'Error retrieving watched shows.';
+      error.status = 400;
+      return next(error);
+    }
+  } else {
+    const error = new Error('Your Watch List is empty.');
+    error.status = 404;
+    return next(error);
+  }
+};
+
+export const clearWatched = async (req, res, next) => {
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+
+  const sql = `DELETE FROM ShowsWatched WHERE user_id = ?`;
+
+  try {
+    db.run(sql, user_id, function (error) {
+      if (error) throw error;
+      res.status(200);
+      let updateMessage = {
+        status: 200,
+        message: `Watched Shows have been cleared.`,
+      };
+      res.json(updateMessage);
+    });
+  } catch (error) {
+    error.message = 'Error deleting shows from database.';
+    error.status = 400;
+    return next(error);
+  }
+};
+export const clearWatchList = async (req, res, next) => {
+  const token = req.header('Authorization').split(' ')[1];
+  const user_id = jwt.decode(token).sub;
+
+  const sql = `DELETE FROM ShowsToWatch WHERE user_id = ?`;
+
+  try {
+    db.run(sql, user_id, function (error) {
+      if (error) throw error;
+      res.status(200);
+      let updateMessage = {
+        status: 200,
+        message: `Watch list has been cleared.`,
+      };
+      res.json(updateMessage);
+    });
+  } catch (error) {
+    error.message = 'Error deleting shows from database.';
+    error.status = 400;
+    return next(error);
+  }
+};
 
 // Function to hash the password
 // This function is used to hash the password with bcrypt before storing it in the database
@@ -179,16 +419,7 @@ async function hashPassword(password) {
   }
 }
 
-// Wrapper functions taken directly from the sqlitetutorial.net site that make fetching from the db easier and uses promises to do it
-
-export const fetchAll = async (db, sql, params) => {
-  return new Promise((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
-      if (err) reject(err);
-      resolve(rows);
-    });
-  });
-};
+// Wrapper function taken directly from the sqlitetutorial.net site that make fetching from the db easier and uses promises to do it
 
 export const fetchFirst = async (db, sql, params) => {
   return new Promise((resolve, reject) => {

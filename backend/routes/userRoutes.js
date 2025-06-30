@@ -7,6 +7,10 @@ import {
   login,
   addWatchedShow,
   addWatchListShow,
+  delWatchListShow,
+  delWatchedShow,
+  clearWatched,
+  clearWatchList,
 } from '../controllers/userController.js';
 import checkToken from '../middleware/auth.js';
 
@@ -17,8 +21,15 @@ userRouter.post('/register', addUser);
 userRouter.post('/login', login);
 
 userRouter.get('/watched', checkToken, getWatched);
-userRouter.get('/watchlist', checkToken, getWatchList);
-userRouter.post('addWatched', checkToken, addWatchedShow);
-userRouter.post('addWatchList', checkToken, addWatchListShow);
+userRouter.get('/watchList', checkToken, getWatchList);
+
+userRouter.post('/addWatchedShow', checkToken, addWatchedShow);
+userRouter.post('/addWatchListShow', checkToken, addWatchListShow);
+
+userRouter.delete('/delWatchedShow', checkToken, delWatchedShow);
+userRouter.delete('/delWatchListShow', checkToken, delWatchListShow);
+
+userRouter.delete('/clearWatched', checkToken, clearWatched);
+userRouter.delete('/clearWatchList', checkToken, clearWatchList);
 
 export default userRouter;
