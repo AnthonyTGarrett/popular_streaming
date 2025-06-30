@@ -2,7 +2,6 @@ import { db } from '../connect.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
-import { getShowFromId } from './showController.js';
 
 // Function for simply testing pulling user information out of the database
 // Not for production use
