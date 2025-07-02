@@ -133,6 +133,7 @@ export const addWatchedShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).sub;
   const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
+  const showsToWatchTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
 
   if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
@@ -140,10 +141,35 @@ export const addWatchedShow = async (req, res, next) => {
     error.status = 400;
     return next(error);
   }
-  const response = await axios.get(
-    `http://localhost:${process.env.PORT}/api/${imdbId}`
-  );
+
+  let response;
+
+  try {
+    response = await axios.get(
+      `http://localhost:${process.env.PORT}/api/${imdbId}`
+    );
+  } catch (error) {
+    error.message = 'Invalid show imdbId.';
+    error.status = 400;
+    return next(error);
+  }
+
   const { showType, title, overview, rating } = response.data;
+
+  if (await fetchFirst(db, showsToWatchTest, [imdbId, user_id])) {
+    const delheaders = {
+      Authorization: req.header('Authorization'),
+      'Content-Type': 'application/json',
+    };
+
+    await axios.delete(
+      `http://localhost:${process.env.PORT}/users/delWatchListShow`,
+      {
+        headers: delheaders,
+        data: req.body,
+      }
+    );
+  }
 
   const sql = `INSERT INTO ShowsWatched(user_id, imdbId, showType, title, overview, rating, image) VALUES(?, ?, ?, ?, ?, ?, ?)`;
   const inserts = [
@@ -165,6 +191,7 @@ export const addWatchedShow = async (req, res, next) => {
           String(showType).charAt(0).toUpperCase() + String(showType).slice(1)
         } ${title} has been added.`,
       };
+
       res.json(updateMessage);
     });
   } catch (error) {
@@ -177,6 +204,7 @@ export const addWatchListShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).sub;
   const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
+  const showsToWatchTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
 
   if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
@@ -184,9 +212,23 @@ export const addWatchListShow = async (req, res, next) => {
     error.status = 400;
     return next(error);
   }
-  const response = await axios.get(
-    `http://localhost:${process.env.PORT}/api/${imdbId}`
-  );
+
+  if (await fetchFirst(db, showsToWatchTest, [imdbId, user_id])) {
+    const error = new Error('This show is already on your watch list.');
+    error.status = 400;
+    return next(error);
+  }
+  let response;
+
+  try {
+    response = await axios.get(
+      `http://localhost:${process.env.PORT}/api/${imdbId}`
+    );
+  } catch (error) {
+    error.message = 'Invalid show imdbId.';
+    error.status = 400;
+    return next(error);
+  }
   const { showType, title, overview, rating } = response.data;
 
   const sql = `INSERT INTO ShowsToWatch(user_id, imdbId, showType, title, overview, rating, image) VALUES(?, ?, ?, ?, ?, ?, ?)`;

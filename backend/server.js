@@ -3,7 +3,6 @@ import routes from './routes/routes.js';
 import userRoutes from './routes/userRoutes.js';
 import cors from 'cors';
 import errorHandler from './middleware/error.js';
-import { checkToken } from './middleware/auth.js';
 
 const port = process.env.PORT || 8000;
 
