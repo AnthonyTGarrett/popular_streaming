@@ -17,6 +17,11 @@ app.use('/api', routes);
 
 app.use(errorHandler);
 
+// Generic error for url that the user tries to visit that isn't covered by the specific routes
+app.use((req, res, next) => {
+  res.status(404).send('<h1>Error: 404 <br>That Page Does Not Exist</h1>');
+});
+
 app.listen(port, () => {
   console.log(`Server is at http://localhost:${port}/`);
   console.log(`Press Ctrl-C to close the server`);
