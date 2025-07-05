@@ -17,11 +17,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-black border-b border-gray-200 w-full'>
+    <nav className='bg-transparent w-full fixed'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
-        <div className='flex flex-1 items-center justify-around md:items-stretch md:justify-start'>
+        <div className='flex flex-1 items-center justify-between md:items-stretch md:justify-start'>
           {/* <!-- Logo --> */}
-          <NavLink className='flex flex-shrink-0 items-center mr-4' to='/home'>
+          <NavLink className='flex flex-shrink-0 items-center mr-10' to='/home'>
             <img className='h-auto w-40' src={logo} alt='Popular Streaming' />
           </NavLink>
           <div className='md:ml-auto flex items-center'>
