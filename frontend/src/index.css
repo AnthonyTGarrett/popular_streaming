@@ -5,3 +5,30 @@
   font-family: 'Open Sans', sans-serif;
   font-optical-sizing: auto;
 }
+
+.hamburger-line {
+  width: 34px;
+  height: 5px;
+  background-color: #ffffff;
+}
+
+.hamburger-line.transform {
+  background-color: #000000;
+}
+
+.closedLinks {
+  display: none;
+}
+
+.openLinks {
+  display: block;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fffffff1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
