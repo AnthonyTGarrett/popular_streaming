@@ -50,3 +50,34 @@
     rgba(22, 22, 22, 1) 36%,
     rgba(0, 0, 0, 1) 61%
   ); */
+/* SM */
+@media (width >= 40rem) {
+  /* sm */
+  * {
+    border: 1px solid red;
+  }
+}
+@media (width >= 48rem) {
+  /* md */
+  * {
+    border: 1px solid blue;
+  }
+}
+@media (width >= 64rem) {
+  /* lg */
+  * {
+    border: 1px solid yellow;
+  }
+}
+@media (width >= 80rem) {
+  /* xl */
+  * {
+    border: 1px solid orange;
+  }
+}
+@media (width >= 96rem) {
+  /* 2xl */
+  * {
+    border: 1px solid purple;
+  }
+}
