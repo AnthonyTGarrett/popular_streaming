@@ -20,6 +20,10 @@
   display: none;
 }
 
+body {
+  background-color: #000000;
+}
+
 .openLinks {
   display: block;
   height: 100vh;
@@ -41,43 +45,4 @@
       rgba(0, 0, 0, 0.95) 61%
     ),
     url(../src/assets/img/hero-image.jpg);
-}
-
-/* background: #2c2c2c;
-  background: linear-gradient(
-    270deg,
-    rgba(44, 44, 44, 1) 1%,
-    rgba(22, 22, 22, 1) 36%,
-    rgba(0, 0, 0, 1) 61%
-  ); */
-/* SM */
-@media (width >= 40rem) {
-  /* sm */
-  * {
-    border: 1px solid red;
-  }
-}
-@media (width >= 48rem) {
-  /* md */
-  * {
-    border: 1px solid blue;
-  }
-}
-@media (width >= 64rem) {
-  /* lg */
-  * {
-    border: 1px solid yellow;
-  }
-}
-@media (width >= 80rem) {
-  /* xl */
-  * {
-    border: 1px solid orange;
-  }
-}
-@media (width >= 96rem) {
-  /* 2xl */
-  * {
-    border: 1px solid purple;
-  }
 }
