@@ -50,11 +50,8 @@ const Navbar = () => {
               <NavLink to='/home' className={linkClass}>
                 Home
               </NavLink>
-              <NavLink to='/movies' className={linkClass}>
-                Movies
-              </NavLink>
               <NavLink to='/series' className={linkClass}>
-                Series
+                Watchlist
               </NavLink>
               <NavLink to='/login' className={linkClass}>
                 Login

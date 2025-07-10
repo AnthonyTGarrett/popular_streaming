@@ -24,24 +24,17 @@ const HomePage = () => {
         </div>
         <div className='hidden md:flex h-full flex-col justify-center items-center basis-1/2'>
           <div className='grid grid-cols-2 gap-y-8 gap-x-16 xl:gap-y-10 xl:gap-x-18 mb-10'>
-            <Link>
-              <img src={netflix} className='w-45'></img>
-            </Link>
-            <Link>
-              <img src={prime} className='w-45'></img>
-            </Link>
-            <Link>
-              <img src={disney} className='w-45'></img>
-            </Link>
-            <Link>
-              <img src={max} className='w-45'></img>
-            </Link>
-            <Link>
-              <img src={apple} className='w-45'></img>
-            </Link>
-            <Link>
-              <img src={hulu} className='w-45'></img>
-            </Link>
+            <img src={netflix} className='w-45'></img>
+
+            <img src={prime} className='w-45'></img>
+
+            <img src={disney} className='w-45'></img>
+
+            <img src={max} className='w-45'></img>
+
+            <img src={apple} className='w-45'></img>
+
+            <img src={hulu} className='w-45'></img>
           </div>
           <div>
             <Link
