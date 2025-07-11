@@ -151,3 +151,16 @@ export const getShowFromFilter = async (req, res, next) => {
     return next(error);
   }
 };
+
+export const getAllGenres = async (req, res, next) => {
+  try {
+    const data = await client.genresApi.getGenres({
+      outputLanguage: 'en',
+    });
+    res.status(200).json(data);
+  } catch (error) {
+    error.message = 'No genres found';
+    error.status = 404;
+    return next(error);
+  }
+};

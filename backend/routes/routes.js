@@ -5,6 +5,7 @@ import {
   getShowFromTitle,
   getTopSeries,
   getTopMovies,
+  getAllGenres,
 } from '../controllers/showController.js';
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.get('/search/title/:title', getShowFromTitle);
 router.get('/top/series/:series', getTopSeries);
 
 router.get('/top/movies/:movie', getTopMovies);
+
+router.get('/genres/getAllGenres', getAllGenres);
 
 export default router;
