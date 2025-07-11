@@ -3,7 +3,7 @@ import genres from '../assets/genres';
 
 const Sidebar = () => {
   return (
-    <aside className='h-full px-8 pt-25 bg-black grid grid-cols-1'>
+    <aside className='h-full px-1 pt-25 bg-black grid grid-cols-1'>
       <form className='flex flex-col items-center'>
         <div className='mb-5'>
           <label htmlFor='keyword'>Find something to watch</label>
@@ -69,7 +69,7 @@ const Sidebar = () => {
           <label htmlFor='service'>Streaming Service</label>
           <select
             id='service'
-            class='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-xs py-1 px-2 mb-8 '
+            class='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1 px-2 mb-8 '
           >
             <option selected value='all'>
               All Services
