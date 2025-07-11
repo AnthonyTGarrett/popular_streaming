@@ -1,24 +1,7 @@
-import { useEffect, useState } from 'react';
 import Checkbox from './Checkbox';
+import genres from '../assets/genres';
 
 const Sidebar = () => {
-  const [genres, setGenres] = useState([]);
-
-  useEffect(() => {
-    const fetchGenres = async () => {
-      const apiUrl = 'http://localhost:8080/api/genres/getAllGenres';
-      try {
-        const res = await fetch(apiUrl);
-        const data = await res.json();
-        setGenres(data);
-      } catch (error) {
-        console.error('Not able to fetch genres', error);
-      }
-    };
-
-    fetchGenres();
-  }, []);
-
   return (
     <aside className='h-full px-8 pt-25 bg-black grid grid-cols-1'>
       <form className='flex flex-col items-center'>
