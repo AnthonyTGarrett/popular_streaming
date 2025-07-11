@@ -60,8 +60,7 @@ const Navbar = () => {
             <div className={isMenuOpen ? 'openLinks' : 'closedLinks'}>
               <div className='flex flex-col gap-8 items-center justify-center text-4xl -translate-y-30 '>
                 <NavLink to='/home'>Home</NavLink>
-                <NavLink to='/movies'>Movies</NavLink>
-                <NavLink to='/series'>Series</NavLink>
+                <NavLink to='/watchlist'>Watchlist</NavLink>
                 <NavLink to='/login'>Login</NavLink>
               </div>
             </div>

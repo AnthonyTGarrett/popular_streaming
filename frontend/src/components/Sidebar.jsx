@@ -89,7 +89,7 @@ const Sidebar = () => {
             <option value='tubi'>Tubi</option>
           </select>
         </div>
-        <div className='mb-5 grid grid-cols-[50%_50%] gap-y-3 gap-x-2'>
+        <div className='hidden lg:grid mb-5 grid-cols-[50%_50%] gap-y-3 gap-x-2'>
           {genres.map((genre, index) => (
             <Checkbox key={index} genre={genre} />
           ))}

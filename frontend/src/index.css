@@ -13,7 +13,7 @@
 }
 
 .hamburger-line.transform {
-  background-color: #000000;
+  background-color: #fff;
 }
 
 .closedLinks {
@@ -31,10 +31,12 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #fffffff1;
+  background-color: #333;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 5;
 }
 
 .hero {
