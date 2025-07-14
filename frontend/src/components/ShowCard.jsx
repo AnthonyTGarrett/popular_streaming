@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ShowBox = () => {
+const ShowCard = ({ show }) => {
   return <div>ShowBox</div>;
 };
 
-export default ShowBox;
+export default ShowCard;

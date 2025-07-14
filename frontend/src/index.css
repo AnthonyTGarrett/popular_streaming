@@ -6,10 +6,6 @@
   font-optical-sizing: auto;
 }
 
-body {
-  z-index: -10;
-}
-
 .hamburger-line {
   width: 34px;
   height: 5px;
@@ -40,7 +36,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9;
+  z-index: 5;
 }
 
 .hero {
