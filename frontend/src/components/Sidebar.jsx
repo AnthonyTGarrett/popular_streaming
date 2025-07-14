@@ -3,9 +3,9 @@ import genres from '../assets/genres';
 
 const Sidebar = () => {
   return (
-    <aside className='h-full px-1 pt-25 bg-black grid grid-cols-1'>
+    <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-25 bg-black grid grid-cols-1'>
       <form className='flex flex-col items-center'>
-        <div className='mb-5'>
+        <div className='mb-5 text-center'>
           <label htmlFor='keyword'>Find something to watch</label>
           <input
             type='text'
@@ -69,11 +69,9 @@ const Sidebar = () => {
           <label htmlFor='service'>Streaming Service</label>
           <select
             id='service'
-            class='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1 px-2 mb-8 '
+            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1 px-2 mb-8'
           >
-            <option selected value='all'>
-              All Services
-            </option>
+            <option defaultValue='all'>All Services</option>
             <option value='netflix'>Netflix</option>
             <option value='prime'>Prime Video</option>
             <option value='disney'>Disney +</option>
