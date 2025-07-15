@@ -65,11 +65,11 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-        <div className='mb-5 mt-8'>
+        <div className='mb-5 mt-8 text-center'>
           <label htmlFor='service'>Streaming Service</label>
           <select
             id='service'
-            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1 px-2 mb-8'
+            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1.5 px-2 mb-8 mt-2'
           >
             <option defaultValue='all'>All Services</option>
             <option value='netflix'>Netflix</option>
