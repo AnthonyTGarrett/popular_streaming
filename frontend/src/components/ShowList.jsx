@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ShowCard from './ShowCard';
-import axios from 'axios';
 
 const ShowList = () => {
   // let show = {
@@ -20,9 +19,10 @@ const ShowList = () => {
         const url = 'http://localhost:8080/api/search/filters/';
         const postData = {
           country: 'us',
-          catalogs: ['netflix'],
+          catalogs: ['netflix', 'prime'],
           keyword: 'zombie',
           showType: 'movie',
+          orderBy: 'rating',
         };
         const res = await fetch(url, {
           method: 'POST',

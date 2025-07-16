@@ -48,3 +48,7 @@ body {
     ),
     url(../src/assets/img/hero-image.jpg);
 }
+
+.grayscale {
+  filter: grayscale(1);
+}
