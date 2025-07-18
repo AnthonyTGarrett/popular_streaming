@@ -4,59 +4,12 @@ import Spinner from './Spinner';
 
 const ShowList = () => {
   const [shows, setShows] = useState([]);
-  const [topSeriesData, settopSeriesData] = useState({});
-  const [topMoviesData, settopMoviesData] = useState({});
+
   const [loading, setLoading] = useState(true);
-
-  const seriesApiURLs = [
-    'http://localhost:8080/api/top/series/netflix',
-    'http://localhost:8080/api/top/series/prime',
-    'http://localhost:8080/api/top/series/disney',
-    'http://localhost:8080/api/top/series/apple',
-    'http://localhost:8080/api/top/series/hbo',
-  ];
-
-  const moviesApiURLs = [
-    'http://localhost:8080/api/top/movies/netflix',
-    'http://localhost:8080/api/top/movies/prime',
-    'http://localhost:8080/api/top/movies/disney',
-    'http://localhost:8080/api/top/movies/apple',
-    'http://localhost:8080/api/top/movies/hbo',
-  ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // for (const url of seriesApiURLs) {
-        //   const res = await fetch(url);
-        //   const data = await res.json();
-        //   const service = url.split('/')[url.length - 1];
-        //   if (data) {
-        //     settopSeriesData({ ...topSeriesData, [service]: data });
-        //   }
-        // }
-
-        // for (const url of moviesApiURLs) {
-        //   const res = await fetch(url);
-        //   const data = await res.json();
-        //   const service = url.split('/')[url.length - 1];
-        //   settopMoviesData(data);
-        // }
-        const netflixSeries = await fetch(seriesApiURLs[0]);
-        const primeSeries = await fetch(seriesApiURLs[1]);
-        const disneySeries = await fetch(seriesApiURLs[2]);
-        const appleSeries = await fetch(seriesApiURLs[3]);
-        const hboSeries = await fetch(seriesApiURLs[4]);
-
-        Promise.all([
-          netflixSeries,
-          primeSeries,
-          disneySeries,
-          appleSeries,
-          hboSeries,
-        ]).then(values => {
-          console.log(values[0]);
-        });
       } catch (error) {
         console.error('Something is broken', error);
       } finally {

@@ -7,7 +7,7 @@ import disney from '../assets/img/logos/disney-dark.svg';
 import max from '../assets/img/logos/max-dark.svg';
 import hulu from '../assets/img/logos/hulu-dark.svg';
 
-const HomePage = () => {
+const LandingPage = () => {
   return (
     <section className='h-screen p-0 hero bg-cover'>
       <div className='flex flex-col md:flex-row py-6 px-10 md:px-40 h-full'>
@@ -56,4 +56,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default LandingPage;

@@ -143,8 +143,21 @@ export const getShowFromFilter = async (req, res, next) => {
   const incoming = req.body;
 
   try {
-    const data = await client.showsApi.searchShowsByFilters(incoming);
-    res.status(200).json(data);
+    // const data = await client.showsApi.searchShowsByFilters(incoming);
+    // res.status(200).json(data);
+    const totalData = [];
+    const PAGES_TO_FETCH = 5;
+    const movies = client.showsApi.searchShowsByFiltersWithAutoPagination(
+      {
+        country: 'us',
+        orderBy: 'popularity_1week',
+      },
+      PAGES_TO_FETCH
+    );
+    for await (const movie of movies) {
+      totalData.push(movie);
+    }
+    res.status(200).json(totalData);
   } catch (error) {
     error.message = 'No results found';
     error.status = 404;
