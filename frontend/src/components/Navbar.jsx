@@ -11,6 +11,7 @@ const Navbar = () => {
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isLoggedIn = false;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,9 +51,14 @@ const Navbar = () => {
               <NavLink to='/home' className={linkClass}>
                 Home
               </NavLink>
-              <NavLink to='/watchlist' className={linkClass}>
-                Watchlist
-              </NavLink>
+              {isLoggedIn ? (
+                <NavLink to='/watchlist' className={linkClass}>
+                  Watchlist
+                </NavLink>
+              ) : (
+                ''
+              )}
+
               <NavLink to='/login' className={linkClass}>
                 Login
               </NavLink>
@@ -60,7 +66,8 @@ const Navbar = () => {
             <div className={isMenuOpen ? 'openLinks' : 'closedLinks'}>
               <div className='flex flex-col gap-8 items-center justify-center text-4xl -translate-y-30 '>
                 <NavLink to='/home'>Home</NavLink>
-                <NavLink to='/watchlist'>Watchlist</NavLink>
+
+                {isLoggedIn ? <NavLink to='/watchlist'>Watchlist</NavLink> : ''}
                 <NavLink to='/login'>Login</NavLink>
               </div>
             </div>

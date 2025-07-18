@@ -5,6 +5,7 @@ import Spinner from './Spinner';
 const ShowSingle = ({ id }) => {
   const [show, setShow] = useState({});
   const [loading, setLoading] = useState(true);
+  const isLoggedIn = false;
 
   useEffect(() => {
     const fetchShowData = async () => {
@@ -48,18 +49,30 @@ const ShowSingle = ({ id }) => {
             <h3 className='text-lg md:text-xl self-end underline underline-offset-4'>
               Overview
             </h3>
-            <button
-              className='cursor-pointer rounded-lg border-1 border-gray-200
+            {isLoggedIn ? (
+              <>
+                {' '}
+                <button
+                  className='cursor-pointer rounded-lg border-1 border-gray-200
    py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
-            >
-              Add to WatchList
-            </button>
-            <button
-              className='cursor-pointer rounded-lg border-1 border-gray-200
+                >
+                  Add to WatchList
+                </button>
+                <button
+                  className='cursor-pointer rounded-lg border-1 border-gray-200
    py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
-            >
-              Mark As Seen
-            </button>
+                >
+                  Mark As Seen
+                </button>{' '}
+              </>
+            ) : (
+              <button
+                className='cursor-pointer rounded-lg border-1 border-gray-200
+   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block col-span-2 mx-4'
+              >
+                Login to Track Shows
+              </button>
+            )}
           </div>
           <p className='text-base mt-4 mb-4 text-center lg:text-left'>
             {show.overview}
