@@ -50,7 +50,7 @@ const Navbar = () => {
               <NavLink to='/home' className={linkClass}>
                 Home
               </NavLink>
-              <NavLink to='/series' className={linkClass}>
+              <NavLink to='/watchlist' className={linkClass}>
                 Watchlist
               </NavLink>
               <NavLink to='/login' className={linkClass}>

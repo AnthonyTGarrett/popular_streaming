@@ -6,7 +6,6 @@ const SinglePage = () => {
   const location = useLocation();
 
   const { id } = location.state || {};
-  console.log(id);
 
   return (
     <div className='text-white text-3xl pt-[150px]'>
