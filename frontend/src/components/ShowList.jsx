@@ -34,36 +34,36 @@ const ShowList = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-    const fetchData = async () => {
-      try {
-        const url = 'http://localhost:8080/api/search/filters/';
-        const postData = {
-          country: 'us',
-          catalogs: ['netflix', 'prime'],
-          keyword: 'zombie',
-          showType: 'movie',
-          orderBy: 'rating',
-        };
-        const res = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(postData),
-        });
-        const data = await res.json();
-        setShows(data.shows);
-      } catch (error) {
-        console.error('Something is broken', error);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   if (firstRender.current) {
+  //     firstRender.current = false;
+  //     return;
+  //   }
+  //   const fetchData = async () => {
+  //     try {
+  //       const url = 'http://localhost:8080/api/search/filters/';
+  //       const postData = {
+  //         country: 'us',
+  //         catalogs: ['netflix', 'prime'],
+  //         keyword: 'zombie',
+  //         showType: 'movie',
+  //         orderBy: 'rating',
+  //       };
+  //       const res = await fetch(url, {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(postData),
+  //       });
+  //       const data = await res.json();
+  //       setShows(data.shows);
+  //     } catch (error) {
+  //       console.error('Something is broken', error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <>
