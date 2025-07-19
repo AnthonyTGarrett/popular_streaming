@@ -71,7 +71,7 @@ const ShowList = () => {
         <Spinner loading={loading} />
       ) : (
         <>
-          <div className='p-2 md:p-4 lg:p-6 xl:p-8 mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-5'>
+          <div className='p-2 md:p-4 lg:p-6 xl:p-8 mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5'>
             {shows.map((show, index) => (
               <ShowCard key={index} show={show} />
             ))}
