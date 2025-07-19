@@ -142,24 +142,20 @@ export const getShowFromFilter = async (req, res, next) => {
   // Express.json() converting the body from a string to json object
   const incoming = req.body;
 
+  let totalData = [];
+  let pages = 0;
+  // let response = await client.showsApi.searchShowsByFilters(incoming);
   try {
-    // const data = await client.showsApi.searchShowsByFilters(incoming);
-    // res.status(200).json(data);
-    const totalData = [];
-    const PAGES_TO_FETCH = 5;
-    const movies = client.showsApi.searchShowsByFiltersWithAutoPagination(
-      {
-        country: 'us',
-        orderBy: 'popularity_1week',
-      },
-      PAGES_TO_FETCH
-    );
-    for await (const movie of movies) {
-      totalData.push(movie);
+    let response = await client.showsApi.searchShowsByFilters(incoming);
+    while (response.hasMore && pages < 5) {
+      response = await client.showsApi.searchShowsByFilters(incoming);
+      totalData = totalData.concat(response.shows);
+      incoming.cursor = response.nextCursor;
+      pages++;
     }
     res.status(200).json(totalData);
   } catch (error) {
-    error.message = 'No results found';
+    // error.message = 'No results found';
     error.status = 404;
     return next(error);
   }

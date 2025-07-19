@@ -98,13 +98,21 @@ const ShowSingle = ({ id }) => {
               Directors
             </h3>
             <p className='text-center text-gray-500 px-2'>
-              {show.directors.map((director, index) => (
-                <span key={index} className='text-base md:text-xl'>
-                  {index === show.directors.length - 1
-                    ? director
-                    : director + ', '}
-                </span>
-              ))}
+              {show.directors
+                ? show.directors.map((director, index) => (
+                    <span key={index} className='text-base md:text-xl'>
+                      {index === show.directors.length - 1
+                        ? director
+                        : director + ', '}
+                    </span>
+                  ))
+                : show.creators.map((creator, index) => (
+                    <span key={index} className='text-base md:text-xl'>
+                      {index === show.creators.length - 1
+                        ? creator
+                        : creator + ', '}
+                    </span>
+                  ))}
             </p>
           </div>
           <div className=' mt-8 w-[90%]'>

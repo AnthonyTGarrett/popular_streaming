@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ShowCard from './ShowCard';
 import Spinner from './Spinner';
 
 const ShowList = () => {
   const [shows, setShows] = useState([]);
-
+  const firstRender = useRef(true);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const url = 'http://localhost:8080/api/search/filters/';
+        const postData = {
+          country: 'us',
+          showType: 'movie',
+          orderBy: 'popularity_alltime',
+        };
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        });
+        const data = await res.json();
+        setShows(data);
       } catch (error) {
         console.error('Something is broken', error);
       } finally {
@@ -19,44 +34,50 @@ const ShowList = () => {
     fetchData();
   }, []);
 
-  //   useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const url = 'http://localhost:8080/api/search/filters/';
-  //       const postData = {
-  //         country: 'us',
-  //         catalogs: ['netflix', 'prime'],
-  //         keyword: 'zombie',
-  //         showType: 'movie',
-  //         orderBy: 'rating',
-  //       };
-  //       const res = await fetch(url, {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify(postData),
-  //       });
-  //       const data = await res.json();
-  //       setShows(data.shows);
-  //     } catch (error) {
-  //       console.error('Something is broken', error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    const fetchData = async () => {
+      try {
+        const url = 'http://localhost:8080/api/search/filters/';
+        const postData = {
+          country: 'us',
+          catalogs: ['netflix', 'prime'],
+          keyword: 'zombie',
+          showType: 'movie',
+          orderBy: 'rating',
+        };
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        });
+        const data = await res.json();
+        setShows(data.shows);
+      } catch (error) {
+        console.error('Something is broken', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
-      {/* {loading ? (
+      {loading ? (
         <Spinner loading={loading} />
       ) : (
-        <div className='p-2 md:p-4 lg:p-6 xl:p-8  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-5'>
-          {topMoviesData.map((show, index) => (
-            <ShowCard key={index} show={show} />
-          ))}
-        </div>
-      )} */}
+        <>
+          <div className='p-2 md:p-4 lg:p-6 xl:p-8 mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-5'>
+            {shows.map((show, index) => (
+              <ShowCard key={index} show={show} />
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };
