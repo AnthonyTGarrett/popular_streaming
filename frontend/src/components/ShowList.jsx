@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ShowCard from './ShowCard';
 import Spinner from './Spinner';
 
-const ShowList = () => {
+const ShowList = ({ formData, onFormChange }) => {
   const [shows, setShows] = useState([]);
   const firstRender = useRef(true);
   const [loading, setLoading] = useState(true);
@@ -11,19 +11,20 @@ const ShowList = () => {
     const fetchData = async () => {
       try {
         const url = 'http://localhost:8080/api/search/filters/';
-        const postData = {
-          country: 'us',
-          showType: 'movie',
-          orderBy: 'popularity_alltime',
-        };
+        // const postData = {
+        //   country: 'us',
+        //   showType: 'movie',
+        //   orderBy: 'rating',
+        // };
         const res = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(postData),
+          body: JSON.stringify(formData),
         });
         const data = await res.json();
+        console.log(data);
         setShows(data);
       } catch (error) {
         console.error('Something is broken', error);

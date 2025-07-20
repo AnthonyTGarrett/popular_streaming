@@ -69,6 +69,7 @@ const Sidebar = () => {
           <label htmlFor='service'>Streaming Service</label>
           <select
             id='service'
+            name='service'
             className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1.5 px-2 mb-8 mt-2'
           >
             <option defaultValue='all'>All Services</option>
