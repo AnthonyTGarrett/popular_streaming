@@ -8,12 +8,18 @@ const HomePage = () => {
     catalogs: [],
     genres: [],
     keyword: '',
+    showType: null,
     orderBy: 'rating',
   });
 
   const onFormChange = event => {
-    event.preventDefault();
+    // event.preventDefault();
     const { name, value } = event.target;
+    if (name === 'showType' && !value) {
+      setFormData(oldFormData => ({ ...oldFormData, [name]: null }));
+      return;
+    }
+
     setFormData(oldFormData => ({ ...oldFormData, [name]: value }));
   };
 

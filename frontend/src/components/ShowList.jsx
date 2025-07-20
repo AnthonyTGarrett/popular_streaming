@@ -24,7 +24,6 @@ const ShowList = ({ formData, onFormChange }) => {
           body: JSON.stringify(formData),
         });
         const data = await res.json();
-        console.log(data);
         setShows(data);
       } catch (error) {
         console.error('Something is broken', error);
@@ -33,7 +32,7 @@ const ShowList = ({ formData, onFormChange }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [formData]);
 
   // useEffect(() => {
   //   if (firstRender.current) {

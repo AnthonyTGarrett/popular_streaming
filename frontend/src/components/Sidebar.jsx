@@ -1,7 +1,7 @@
 import Checkbox from './Checkbox';
 import genres from '../assets/genres';
 
-const Sidebar = () => {
+const Sidebar = ({ formData, onFormChange }) => {
   return (
     <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-25 bg-black grid grid-cols-1'>
       <form className='flex flex-col items-center'>
@@ -10,6 +10,8 @@ const Sidebar = () => {
           <input
             type='text'
             name='keyword'
+            value={formData.keyword}
+            onChange={onFormChange}
             id='keyword'
             placeholder='What to watch...'
             className='bg-[#2c2c2c] border border-[#E0115F] rounded-lg focus:ring-2 focus:ring-[#E0115F] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
@@ -21,14 +23,15 @@ const Sidebar = () => {
               <input
                 type='radio'
                 id='all'
-                name='options'
-                value='all'
+                name='showType'
+                value=''
                 className='hidden peer'
-                defaultChecked
+                checked={formData.showType === null}
+                onChange={onFormChange}
               />
               <label
                 htmlFor='all'
-                className='px-4 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] peer-checked:text-white'
+                className='px-4 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] checked:bg-[#e0115f]peer-checked:text-white'
               >
                 All
               </label>
@@ -36,13 +39,15 @@ const Sidebar = () => {
             <div className='relative'>
               <input
                 type='radio'
-                id='movies'
-                name='options'
-                value='movies'
+                id='movie'
+                name='showType'
+                value='movie'
                 className='peer hidden'
+                checked={formData.showType === 'movie'}
+                onChange={onFormChange}
               />
               <label
-                htmlFor='movies'
+                htmlFor='movie'
                 className='px-4 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] peer-checked:text-white'
               >
                 Movies
@@ -52,9 +57,11 @@ const Sidebar = () => {
               <input
                 type='radio'
                 id='series'
-                name='options'
+                name='showType'
                 value='series'
                 className='peer hidden'
+                checked={formData.showType === 'series'}
+                onChange={onFormChange}
               />
               <label
                 htmlFor='series'
