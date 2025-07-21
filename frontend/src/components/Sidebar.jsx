@@ -2,9 +2,12 @@ import Checkbox from './Checkbox';
 import genres from '../assets/genres';
 
 const Sidebar = ({ formData, onFormChange }) => {
+  const preventSubmit = e => {
+    e.preventDefault();
+  };
   return (
     <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-25 bg-black grid grid-cols-1'>
-      <form className='flex flex-col items-center'>
+      <form className='flex flex-col items-center' onSubmit={preventSubmit}>
         <div className='mb-5 text-center'>
           <label htmlFor='keyword'>Find something to watch</label>
           <input
@@ -75,11 +78,13 @@ const Sidebar = ({ formData, onFormChange }) => {
         <div className='mb-5 mt-8 text-center'>
           <label htmlFor='service'>Streaming Service</label>
           <select
-            id='service'
-            name='service'
+            id='catalogs'
+            name='catalogs'
+            value={formData.catalogs[0]}
+            onChange={onFormChange}
             className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1.5 px-2 mb-8 mt-2'
           >
-            <option defaultValue='all'>All Services</option>
+            <option value=''>All Services</option>
             <option value='netflix'>Netflix</option>
             <option value='prime'>Prime Video</option>
             <option value='disney'>Disney +</option>

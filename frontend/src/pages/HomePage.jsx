@@ -13,10 +13,14 @@ const HomePage = () => {
   });
 
   const onFormChange = event => {
-    // event.preventDefault();
     const { name, value } = event.target;
     if (name === 'showType' && !value) {
       setFormData(oldFormData => ({ ...oldFormData, [name]: null }));
+      return;
+    }
+
+    if (name === 'catalogs') {
+      setFormData(oldFormData => ({ ...oldFormData, [name]: [value] }));
       return;
     }
 
