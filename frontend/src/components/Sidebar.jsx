@@ -5,6 +5,7 @@ const Sidebar = ({ formData, onFormChange }) => {
   const preventSubmit = e => {
     e.preventDefault();
   };
+
   return (
     <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-25 bg-black grid grid-cols-1'>
       <form className='flex flex-col items-center' onSubmit={preventSubmit}>
@@ -104,7 +105,12 @@ const Sidebar = ({ formData, onFormChange }) => {
           className={`hidden lg:grid mb-5 grid-cols-[50%_50%] gap-y-3 gap-x-2`}
         >
           {genres.map((genre, index) => (
-            <Checkbox key={index} genre={genre} />
+            <Checkbox
+              key={index}
+              genre={genre}
+              formData={formData}
+              onFormChange={onFormChange}
+            />
           ))}
         </div>
       </form>

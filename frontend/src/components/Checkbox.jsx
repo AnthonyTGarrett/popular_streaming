@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Checkbox = ({ genre }) => {
+const Checkbox = ({ genre, formData, onFormChange }) => {
   return (
     <div>
       <input
@@ -8,6 +8,9 @@ const Checkbox = ({ genre }) => {
         className='appearance-none peer hidden'
         name='genres'
         id={genre.id}
+        value={genre.name}
+        checked={formData.genres.includes(genre.name)}
+        onChange={onFormChange}
       ></input>
       <label
         htmlFor={genre.id}

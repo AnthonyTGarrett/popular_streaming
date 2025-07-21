@@ -52,3 +52,9 @@ body {
 .grayscale {
   filter: grayscale(1);
 }
+
+@media (orientation: landscape) {
+  main {
+    padding-top: 3rem;
+  }
+}

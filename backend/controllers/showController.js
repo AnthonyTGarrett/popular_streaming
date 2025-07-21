@@ -145,9 +145,12 @@ export const getShowFromFilter = async (req, res, next) => {
   // let totalData = [];
   // let pages = 0;
   // const PAGES_TO_FETCH = 5;
-  let response = await client.showsApi.searchShowsByFilters(incoming);
-  res.status(200).json(response.shows);
+
   try {
+    let response = await client.showsApi.searchShowsByFilters(incoming);
+
+    res.status(200).json(response.shows);
+    // res.send(response);
     // let response = await client.showsApi.searchShowsByFilters(incoming);
     // while (response.hasMore && pages < 3) {
     //   response = await client.showsApi.searchShowsByFilters(incoming);
