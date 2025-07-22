@@ -8,6 +8,7 @@ const ShowList = ({ formData }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       try {
         const url = 'http://localhost:8080/api/search/filters/';

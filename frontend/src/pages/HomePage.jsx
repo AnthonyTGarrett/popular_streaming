@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import ShowList from '../components/ShowList';
+import MainHeader from '../components/MainHeader';
 
 const HomePage = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const HomePage = () => {
     genres: [],
     keyword: '',
     showType: null,
-    orderBy: 'popularity_alltime',
+    orderBy: 'popularity_1month',
   });
 
   const onFormChange = event => {
@@ -57,7 +58,8 @@ const HomePage = () => {
 
   return (
     <>
-      <main className='grid grid-cols-1 sm:grid-cols-[25%_75%] md:grid-cols-[35%_65%] lg:grid-cols-[30%_70%] xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[150px]'>
+      <MainHeader formData={formData} />
+      <main className='grid grid-cols-1 sm:grid-cols-[25%_75%] md:grid-cols-[35%_65%] lg:grid-cols-[35%_65%] xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[150px]'>
         <Sidebar
           formData={formData}
           onFormChange={onFormChange}
