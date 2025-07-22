@@ -71,14 +71,14 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             </div>
           </div>
         </div>
-        <div className='mb-5 mt-8 text-center'>
+        <div className='mb-5 mt-8 text-center w-full lg:w-[80%] mx-auto flex flex-col justify-center items-center'>
           <label htmlFor='service'>Streaming Service</label>
           <select
             id='catalogs'
             name='catalogs'
             value={formData.catalogs[0]}
             onChange={onFormChange}
-            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-full py-1.5 px-2 mb-8 mt-2'
+            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-[80%] py-1.5 px-2 mb-8 mt-2 text-center'
           >
             <option value=''>All Services</option>
             <option value='netflix'>Netflix</option>
