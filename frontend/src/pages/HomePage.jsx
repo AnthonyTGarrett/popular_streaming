@@ -44,10 +44,18 @@ const HomePage = () => {
     setFormData(oldFormData => ({ ...oldFormData, [name]: value }));
   };
 
+  const onFormSubmit = event => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <main className='grid grid-cols-1 sm:grid-cols-[25%_75%] md:grid-cols-[35%_65%] lg:grid-cols-[30%_70%] xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[150px]'>
-        <Sidebar formData={formData} onFormChange={onFormChange} />
+        <Sidebar
+          formData={formData}
+          onFormChange={onFormChange}
+          onFormSubmit={onFormSubmit}
+        />
         <ShowList formData={formData} onFormChange={onFormChange} />
       </main>
     </>
