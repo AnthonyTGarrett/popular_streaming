@@ -40,12 +40,19 @@ const HomePage = () => {
       });
       return;
     }
+    if (name === 'keyword') {
+      return;
+    }
 
     setFormData(oldFormData => ({ ...oldFormData, [name]: value }));
   };
 
   const onFormSubmit = event => {
     event.preventDefault();
+
+    const { name, value } = event.target[0];
+
+    setFormData(oldFormData => ({ ...oldFormData, [name]: value }));
   };
 
   return (

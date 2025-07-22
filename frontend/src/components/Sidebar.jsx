@@ -10,7 +10,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
           <input
             type='text'
             name='keyword'
-            value={formData.keyword}
+            onChange={onFormChange}
             id='keyword'
             placeholder='What to watch...'
             className='bg-[#2c2c2c] border border-[#E0115F] rounded-lg focus:ring-2 focus:ring-[#E0115F] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
