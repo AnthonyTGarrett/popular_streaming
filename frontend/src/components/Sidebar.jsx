@@ -78,7 +78,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             name='catalogs'
             value={formData.catalogs[0]}
             onChange={onFormChange}
-            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-[80%] py-1.5 px-2 mb-8 mt-2 text-center'
+            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-[80%] py-1.5 px-2 mb-2 mt-2 text-center'
           >
             <option value=''>All Services</option>
             <option value='netflix'>Netflix</option>
@@ -94,6 +94,23 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             <option value='discovery'>Discovery</option>
             <option value='plutotv'>Pluto TV</option>
             <option value='tubi'>Tubi</option>
+          </select>
+        </div>
+        <div className='mb-5 mt-8 text-center w-full lg:w-[80%] mx-auto flex flex-col justify-center items-center'>
+          <label htmlFor='order'>Sort Results By:</label>
+          <select
+            id='orderBy'
+            name='orderBy'
+            value={formData.orderBy}
+            onChange={onFormChange}
+            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-[80%] py-1.5 px-2 mb-8 mt-2 text-center'
+          >
+            <option value='popularity_alltime'>Popular All Time</option>
+            <option value='popularity_1month'>Popular This Month</option>
+            <option value='popularity_1week'>Popular This Week</option>
+            <option value='popularity_1year'>Popular This Year</option>
+            <option value='rating'>Rating</option>
+            <option value='release_date'>Release Date</option>
           </select>
         </div>
         <div

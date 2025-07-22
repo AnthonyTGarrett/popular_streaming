@@ -11,13 +11,11 @@ const MainHeader = ({ formData }) => {
       {formData.showType === 'movie'
         ? capitalizeIt(formData.showType) + 's'
         : formData.showType === 'series'
-        ? capitalizeIt(formData.showType)
+        ? 'TV ' + capitalizeIt(formData.showType)
         : 'Shows'}{' '}
       This Month{' '}
       {formData.catalogs[0]
-        ? ' On ' +
-          formData.catalogs[0].charAt(0).toUpperCase() +
-          formData.catalogs[0].slice(1)
+        ? ' On ' + capitalizeIt(formData.catalogs[0])
         : 'on Streaming'}
     </div>
   );
