@@ -90,7 +90,7 @@ const ShowSingle = ({ id }) => {
               {show.showType[0].toUpperCase() + show.showType.slice(1)}
             </p>
             <p className='text-right text-sm md:text-base'>
-              <strong>Release Year: </strong> {show.releaseYear}
+              {show.releaseYear ? show.releaseYear : show.firstAirYear}
             </p>
           </div>
           <div className=' mt-4 w-[90%]'>

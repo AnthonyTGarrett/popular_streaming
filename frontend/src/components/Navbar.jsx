@@ -23,9 +23,9 @@ const Navbar = () => {
         <div className='flex flex-1 items-center justify-between md:items-stretch md:justify-start'>
           {/* <!-- Logo --> */}
           <NavLink className='flex flex-shrink-0 items-center mr-10' to='/home'>
-            <img className='h-auto w-40' src={logo} alt='Popular Streaming' />
+            <img className='h-auto w-50' src={logo} alt='Popular Streaming' />
           </NavLink>
-          <div className='md:ml-auto flex items-center'>
+          <div className='md:ml-auto flex items-center -mt-6'>
             <button
               id='hamburger-button'
               className='md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 z-10'
@@ -65,10 +65,14 @@ const Navbar = () => {
             </div>
             <div className={isMenuOpen ? 'openLinks' : 'closedLinks'}>
               <div className='flex flex-col gap-8 items-center justify-center text-4xl -translate-y-30 '>
-                <NavLink to='/home'>Home</NavLink>
+                <NavLink to='/home' onClick={toggleMenu}>
+                  Home
+                </NavLink>
 
                 {isLoggedIn ? <NavLink to='/watchlist'>Watchlist</NavLink> : ''}
-                <NavLink to='/login'>Login</NavLink>
+                <NavLink to='/login' onClick={toggleMenu}>
+                  Login
+                </NavLink>
               </div>
             </div>
           </div>

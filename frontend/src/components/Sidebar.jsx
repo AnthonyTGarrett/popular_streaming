@@ -4,7 +4,10 @@ import genres from '../assets/genres';
 const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
   return (
     <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-25 bg-black grid grid-cols-1'>
-      <form className='flex flex-col items-center' onSubmit={onFormSubmit}>
+      <form
+        className='flex flex-col items-center pt-15'
+        onSubmit={onFormSubmit}
+      >
         <div className='mb-5 text-center'>
           <label htmlFor='keyword'>Find something to watch</label>
           <input
@@ -71,7 +74,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             </div>
           </div>
         </div>
-        <div className='mb-5 mt-8 text-center w-full lg:w-[80%] mx-auto flex flex-col justify-center items-center'>
+        <div className='mb-5 mt-3 text-center w-full lg:w-[80%] mx-auto flex flex-col justify-center items-center'>
           <label htmlFor='service'>Streaming Service</label>
           <select
             id='catalogs'
@@ -96,7 +99,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             <option value='tubi'>Tubi</option>
           </select>
         </div>
-        <div className='mb-5 mt-8 text-center w-full lg:w-[80%] mx-auto flex flex-col justify-center items-center'>
+        <div className='mb-5 mt-3 text-center w-full lg:w-[80%] mx-auto flex flex-col justify-center items-center'>
           <label htmlFor='order'>Sort Results By:</label>
           <select
             id='orderBy'

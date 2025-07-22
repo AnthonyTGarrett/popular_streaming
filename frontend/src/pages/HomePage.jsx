@@ -10,7 +10,7 @@ const HomePage = () => {
     genres: [],
     keyword: '',
     showType: null,
-    orderBy: 'popularity_1month',
+    orderBy: 'popularity_alltime',
   });
 
   const onFormChange = event => {
