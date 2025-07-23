@@ -30,7 +30,6 @@ const chooseYourHeading = formData => {
   } else {
     wordArr.push('On ' + capitalizeIt(formData.catalogs[0]));
   }
-  console.log(wordArr);
   if (formData.orderBy === 'rating') {
     [wordArr[1], wordArr[2]] = [wordArr[2], wordArr[1]];
   }
