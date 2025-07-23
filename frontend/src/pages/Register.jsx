@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SignUp = () => {
+const Register = () => {
   return (
     <div className='min-h-[100vh] flex items-center justify-center'>
       <div className='text-white h-[75vh] w-full lg:w-[50vw] mx-auto shadow-2xl -translate-y-25 rounded-2xl'>
@@ -76,4 +76,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Register;

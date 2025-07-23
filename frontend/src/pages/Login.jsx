@@ -1,11 +1,25 @@
+import { useState } from 'react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+  const [userInput, setuserInput] = useState({
+    username: '',
+    password: '',
+  });
+
+  const failedLogin = false;
   const handleLoginSubmit = e => {
     e.preventDefault();
+  };
 
-    console.log(e.target.username.value, e.target.password.value);
+  const handleInput = e => {
+    const { name, value } = e.target;
+
+    setuserInput(oldUserInput => ({
+      ...oldUserInput,
+      [name]: value,
+    }));
   };
 
   return (
@@ -22,6 +36,7 @@ const Login = () => {
               name='username'
               id='username'
               placeholder='Username'
+              onChange={handleInput}
               className='bg-[#2c2c2c] border border-[var(--pink)] rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
             ></input>
           </label>
@@ -31,18 +46,27 @@ const Login = () => {
               name='password'
               id='password'
               placeholder='Password'
+              onChange={handleInput}
               className='bg-[#2c2c2c] border border-[var(--pink)] rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
             ></input>
           </label>
+          <p
+            className={`text-red-600 text-xl ${
+              failedLogin ? 'block' : 'hidden'
+            }`}
+          >
+            Incorrect UserName and / or password
+          </p>
           <button
             type='submit'
             className='text-2xl py-2 px-6 rounded-2xl ring-[var(--pink)] bg-[var(--pink)] shadow-inner hover:cursor-pointer'
           >
             Login
           </button>
+
           <p>
             No Account?
-            <Link to='/signup' className='text-[var(--pink)]'>
+            <Link to='/register' className='text-[var(--pink)]'>
               {' '}
               Sign Up Now!
             </Link>
