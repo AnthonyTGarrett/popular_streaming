@@ -6,8 +6,8 @@ import logo from '../assets/img/logos/logo.png';
 const Navbar = () => {
   const linkClass = ({ isActive }) => {
     return isActive
-      ? 'text-[var(--pink)] transition hover:text-opacity-30'
-      : 'hover:text-[var(--pink)] transition';
+      ? 'text-[#E0115F] transition hover:text-opacity-30'
+      : 'hover:text-[#E0115F] transition';
   };
 
   const location = useLocation();

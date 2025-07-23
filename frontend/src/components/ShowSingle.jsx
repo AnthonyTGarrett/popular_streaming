@@ -54,13 +54,13 @@ const ShowSingle = ({ id }) => {
                 {' '}
                 <button
                   className='cursor-pointer rounded-lg border-1 border-gray-200
-   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[var(--pink)] text-xs md:text-sm text-center block'
+   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
                 >
                   Add to WatchList
                 </button>
                 <button
                   className='cursor-pointer rounded-lg border-1 border-gray-200
-   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[var(--pink)] text-xs md:text-sm text-center block'
+   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
                 >
                   Mark As Seen
                 </button>{' '}
@@ -68,7 +68,7 @@ const ShowSingle = ({ id }) => {
             ) : (
               <button
                 className='cursor-pointer rounded-lg border-1 border-gray-200
-   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[var(--pink)] text-xs md:text-sm text-center block col-span-2 mx-4'
+   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block col-span-2 mx-4'
               >
                 Login to Track Shows
               </button>

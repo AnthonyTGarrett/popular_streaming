@@ -16,7 +16,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             onChange={onFormChange}
             id='keyword'
             placeholder='What to watch...'
-            className='bg-[#2c2c2c] border border-[var(--pink)] rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
+            className='bg-[#2c2c2c] border border-[#E0115F] rounded-lg focus:ring-2 focus:ring-[#E0115F] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
           />
         </div>
         <div className='mb-5'>
@@ -33,7 +33,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
               />
               <label
                 htmlFor='all'
-                className='px-3 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[var(--pink)] checked:bg-[var(--pink)]peer-checked:text-white'
+                className='px-3 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] checked:bg-[#e0115f]peer-checked:text-white'
               >
                 All
               </label>
@@ -50,7 +50,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
               />
               <label
                 htmlFor='movie'
-                className='px-4 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[var(--pink)] peer-checked:text-white'
+                className='px-4 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] peer-checked:text-white'
               >
                 Movies
               </label>
@@ -67,7 +67,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
               />
               <label
                 htmlFor='series'
-                className='px-4 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[var(--pink)] peer-checked:text-white'
+                className='px-4 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] peer-checked:text-white'
               >
                 TV Shows
               </label>
@@ -81,7 +81,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             name='catalogs'
             value={formData.catalogs[0]}
             onChange={onFormChange}
-            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:border-[var(--pink)] block w-60 lg:w-[80%] py-1.5 px-2 mb-2 mt-2 text-center'
+            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-[80%] py-1.5 px-2 mb-2 mt-2 text-center'
           >
             <option value=''>All Services</option>
             <option value='netflix'>Netflix</option>
@@ -106,7 +106,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             name='orderBy'
             value={formData.orderBy}
             onChange={onFormChange}
-            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:border-[var(--pink)] block w-60 lg:w-[80%] py-1.5 px-2 mb-8 mt-2 text-center'
+            className='bg-[#2c2c2c] border border-gray-300 text-gray-100 text-md rounded-lg focus:ring-2 focus:ring-[#e0115f] focus:border-[#e0115f] block w-60 lg:w-[80%] py-1.5 px-2 mb-8 mt-2 text-center'
           >
             <option value='popularity_alltime'>Popular All Time</option>
             <option value='popularity_1month'>Popular This Month</option>

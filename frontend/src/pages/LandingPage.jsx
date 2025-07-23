@@ -18,7 +18,7 @@ const LandingPage = () => {
           <h2 className='text-white text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-none mb-2'>
             Track What <br></br>You Watch.
           </h2>
-          <h3 className='text-[var(--pink)] text-3xl md:text-4xl xl:text-6xl self-end md:self-end font-bold'>
+          <h3 className='text-[#E0115F] text-3xl md:text-4xl xl:text-6xl self-end md:self-end font-bold'>
             We Can Help.
           </h3>
         </div>
@@ -39,7 +39,7 @@ const LandingPage = () => {
           <div>
             <Link
               to='/home'
-              className='bg-[var(--pink)] px-8 py-4 xl:px-10 xl:py-5 rounded-2xl text-2xl text-white'
+              className='bg-[#E0115F] px-8 py-4 xl:px-10 xl:py-5 rounded-2xl text-2xl text-white'
             >
               Get Started
             </Link>
@@ -47,7 +47,7 @@ const LandingPage = () => {
         </div>
         <Link
           to='/home'
-          className='md:hidden bg-[var(--pink)] px-10 py-5 rounded-2xl text-2xl text-white text-center'
+          className='md:hidden bg-[#E0115F] px-10 py-5 rounded-2xl text-2xl text-white text-center'
         >
           Get Started
         </Link>
