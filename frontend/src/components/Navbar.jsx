@@ -1,14 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import logo from '../assets/img/logos/logo.png';
 
 const Navbar = () => {
   const linkClass = ({ isActive }) => {
     return isActive
-      ? 'text-[#E0115F] transition hover:text-opacity-30'
-      : 'hover:text-[#E0115F] transition';
+      ? 'text-[var(--pink)] transition hover:text-opacity-30'
+      : 'hover:text-[var(--pink)] transition';
   };
+
+  const location = useLocation();
+  const isLandingPage = location.pathname === '/';
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isLoggedIn = false;
@@ -18,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-transparent w-full fixed'>
+    <nav className={`bg-transparent w-full ${isLandingPage ? 'fixed' : ''}`}>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='flex flex-1 items-center justify-between md:items-stretch md:justify-start'>
           {/* <!-- Logo --> */}

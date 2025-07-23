@@ -10,11 +10,11 @@ const ShowCard = ({ show }) => {
 
   return (
     <div
-      className='flex flex-col p-3 justify-between bg-black hover:bg-[#2c2c2c] hover:rounded cursor-pointer'
+      className='flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer shadow-2xl'
       onClick={displaySingle}
     >
-      <img src={show.imageSet.horizontalPoster.w360} className='h-[75%]'></img>
-      <div className='flex h-20 justify-between items-center pl-2.5 pr-2.5'>
+      <img src={show.imageSet.verticalPoster.w360} className='h-[85%]'></img>
+      <div className='flex h-5 justify-between items-center px-2.5'>
         <div className='self-end flex pb-1.5'>
           {show.releaseYear ? show.releaseYear : show.firstAirYear}
         </div>

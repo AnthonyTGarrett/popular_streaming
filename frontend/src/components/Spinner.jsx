@@ -8,7 +8,7 @@ const Spinner = ({ loading }) => {
   };
   return (
     <ClipLoader
-      color='##E0115F'
+      color='#var(--pink)'
       loading={loading}
       cssOverride={override}
       size={150}

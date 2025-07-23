@@ -39,7 +39,7 @@ const chooseYourHeading = formData => {
 
 const MainHeader = ({ formData }) => {
   return (
-    <div className='text-white text-4xl translate-y-[50px] md:translate-y-[100px] xl:translate-y-[230px] hidden lg:block lg:left-[35%] xl:left-[25%] absolute'>
+    <div className='text-white text-4xl translate-y-[50px] md:translate-y-[50px] xl:translate-y-[100px] hidden lg:block lg:left-[35%] xl:left-[25%] absolute'>
       {chooseYourHeading(formData)}
     </div>
   );

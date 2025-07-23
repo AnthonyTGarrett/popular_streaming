@@ -4,6 +4,8 @@
 :root {
   font-family: 'Merriweather Sans', sans-serif;
   font-optical-sizing: auto;
+
+  --pink: var(--pink);
 }
 
 .hamburger-line {
@@ -21,9 +23,8 @@
 }
 
 body {
-  background-color: #000000;
+  background-color: #2c2c2c;
   min-height: 100%;
-  position: relative;
 }
 
 .openLinks {
@@ -49,10 +50,6 @@ body {
       rgba(0, 0, 0, 0.95) 71%
     ),
     url(../src/assets/img/hero-image.jpg);
-}
-
-.grayscale {
-  filter: grayscale(1);
 }
 
 @media screen and (max-width: 1150px) {
