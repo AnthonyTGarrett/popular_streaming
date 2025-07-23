@@ -149,7 +149,6 @@ export const getShowFromFilter = async (req, res, next) => {
 
   try {
     let response = await client.showsApi.searchShowsByFilters(incoming);
-
     res.status(200).json(response.shows);
     // res.send(response);
     // let response = await client.showsApi.searchShowsByFilters(incoming);

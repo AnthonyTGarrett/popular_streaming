@@ -3,7 +3,7 @@ import genres from '../assets/genres';
 
 const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
   return (
-    <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-25 bg-black grid grid-cols-1'>
+    <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-15 bg-black grid grid-cols-1'>
       <form
         className='flex flex-col items-center pt-15'
         onSubmit={onFormSubmit}
@@ -113,7 +113,6 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             <option value='popularity_1week'>Popular This Week</option>
             <option value='popularity_1year'>Popular This Year</option>
             <option value='rating'>Rating</option>
-            <option value='release_date'>Release Date</option>
           </select>
         </div>
         <div
