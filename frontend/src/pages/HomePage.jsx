@@ -59,7 +59,7 @@ const HomePage = () => {
   return (
     <>
       <MainHeader formData={formData} />
-      <main className='grid grid-cols-1 sm:grid-cols-[25%_75%] md:grid-cols-[35%_65%] lg:grid-cols-[35%_65%] xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[200px] mb-10'>
+      <main className='grid grid-cols-1 sm:grid-cols-[25%_75%] md:grid-cols-[35%_65%] lg:grid-cols-[35%_65%] xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[200px] mb-10 min-h-[100vh]'>
         <Sidebar
           formData={formData}
           onFormChange={onFormChange}

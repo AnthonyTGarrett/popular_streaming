@@ -83,7 +83,11 @@ const ShowSingle = ({ id }) => {
               {show.rating / 10}
             </p>
             <p className='text-right text-sm md:text-base'>
-              <strong>Runtime: </strong> {show.runtime}
+              {show.showType === 'series' ? (
+                <strong>Seasons: {show.seasonCount}</strong>
+              ) : (
+                <strong>Runtime: {show.runtime} mins</strong>
+              )}
             </p>
             <p className=' text-sm md:text-base'>
               <strong>Show Type: </strong>
@@ -131,7 +135,7 @@ const ShowSingle = ({ id }) => {
             <h3 className='text-lg md:text-xl self-end underline underline-offset-4 pb-4'>
               Where to Stream
             </h3>
-            <div className='flex flex-wrap gap-4'>
+            <div className='flex flex-wrap gap-4 items-center justify-center'>
               <div className='grid grid-cols-3 md:grid-cols-4 row-auto gap-4 place-content-center place-items-center'>
                 {show.streamingOptions.us.map((service, index) => (
                   <Link
