@@ -110,13 +110,13 @@ export const login = async (req, res, next) => {
   if (user) {
     if (await bcrypt.compare(password, user.password)) {
       const payload = {
-        sub: user.user_id,
+        userId: user.user_id,
         username: username,
       };
       const token = jwt.sign(payload, process.env.secretKey, {
-        expiresIn: '1h',
+        expiresIn: '2h',
       });
-      res.status(200).json({ token });
+      res.status(200).json(token);
     } else {
       const error = new Error(`Invalid Username or Password.`);
       error.status = 400;

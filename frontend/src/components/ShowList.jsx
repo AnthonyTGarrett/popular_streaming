@@ -9,6 +9,7 @@ const ShowList = ({ formData }) => {
 
   useEffect(() => {
     setLoading(true);
+    window.scrollTo(0, 0);
     const fetchData = async () => {
       try {
         const url = 'http://localhost:8080/api/search/filters/';

@@ -1,7 +1,26 @@
 import Checkbox from './Checkbox';
-import genres from '../assets/genres';
+import { useState, useEffect } from 'react';
 
 const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
+  const [genres, setGenres] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = 'http://localhost:8080/api/genres/getAllGenres';
+
+        const res = await fetch(url);
+        console.log(res);
+        const data = await res.json();
+        console.log(data);
+        setGenres(data);
+      } catch (error) {
+        console.error('Something is broken', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-15 bg-[#2c2c2c] grid grid-cols-1'>
       <form

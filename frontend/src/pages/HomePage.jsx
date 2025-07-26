@@ -36,7 +36,6 @@ const HomePage = () => {
             genre => genre !== value
           );
         }
-        console.log(newFormData);
         return newFormData;
       });
       return;

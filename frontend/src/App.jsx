@@ -11,7 +11,6 @@ import SinglePage from './pages/SinglePage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
-import AuthProvider from './components/AuthProvider';
 
 function App() {
   const router = createBrowserRouter(
@@ -27,11 +26,7 @@ function App() {
     )
   );
 
-  return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

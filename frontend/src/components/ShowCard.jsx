@@ -10,7 +10,7 @@ const ShowCard = ({ show }) => {
 
   return (
     <div
-      className='flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer shadow-2xl'
+      className='flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer hover:shadow-2xl transition-all duration-250'
       onClick={displaySingle}
     >
       <img src={show.imageSet.verticalPoster.w360} className='h-[85%]'></img>
