@@ -1,40 +1,26 @@
 import { useState } from 'react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { useAuth } from '../hooks/AuthProvider';
 
 const Login = () => {
   const [userInput, setUserInput] = useState({
     username: '',
     password: '',
   });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const failedLogin = false;
+  const auth = useAuth();
   const handleLoginSubmit = e => {
     e.preventDefault();
     if (userInput.username !== '' && userInput.password !== '') {
-      const fetchData = async () => {
-        try {
-          const url = 'http://localhost:8080/users/login';
-
-          const res = await fetch(url, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userInput),
-          });
-
-          const data = await res.json();
-          const userdata = jwtDecode(data);
-
-          console.log(userdata);
-        } catch (error) {
-          console.log(error.message, error.status);
-        }
-      };
-      fetchData();
+      auth.loginAction(userInput);
+      setIsLoggedIn(true);
+      return;
     }
+
+    setErrorMessage('Invalid Credentials');
   };
   const handleInput = e => {
     const { name, value } = e.target;
@@ -53,6 +39,9 @@ const Login = () => {
           onSubmit={handleLoginSubmit}
         >
           <h2 className='text-4xl text-center'>Log In Now!</h2>
+          {errorMessage && (
+            <p className={'text-red-600 text-xl'}>Invalid Credentials</p>
+          )}
           <label htmlFor='username'>
             <input
               type='text'
@@ -75,13 +64,7 @@ const Login = () => {
               className='bg-[#2c2c2c] border border-[var(--pink)] rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
             ></input>
           </label>
-          <p
-            className={`text-red-600 text-xl ${
-              failedLogin ? 'block' : 'hidden'
-            }`}
-          >
-            Incorrect UserName and / or password
-          </p>
+
           <button
             type='submit'
             className='text-2xl py-2 px-6 rounded-2xl ring-[var(--pink)] bg-[var(--pink)] shadow-inner hover:cursor-pointer'

@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { useAuth } from '../hooks/AuthProvider';
 import logo from '../assets/img/logos/logo.png';
 
 const Navbar = () => {
+  const auth = useAuth();
   const linkClass = ({ isActive }) => {
     return isActive
       ? 'text-[#E0115F] transition hover:text-opacity-30'
@@ -14,7 +16,7 @@ const Navbar = () => {
   const isLandingPage = location.pathname === '/';
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -55,16 +57,21 @@ const Navbar = () => {
                 Home
               </NavLink>
               {isLoggedIn ? (
-                <NavLink to='/watchlist' className={linkClass}>
-                  Watchlist
+                <NavLink to='/dashboard' className={linkClass}>
+                  Watch Lists
                 </NavLink>
               ) : (
                 ''
               )}
-
-              <NavLink to='/login' className={linkClass}>
-                Login
-              </NavLink>
+              {isLoggedIn ? (
+                <NavLink onClick={auth.logOut} className={linkClass}>
+                  Logout
+                </NavLink>
+              ) : (
+                <NavLink to='/login' className={linkClass}>
+                  Login
+                </NavLink>
+              )}
             </div>
             <div className={isMenuOpen ? 'openLinks' : 'closedLinks'}>
               <div className='flex flex-col gap-8 items-center justify-center text-4xl -translate-y-30 '>

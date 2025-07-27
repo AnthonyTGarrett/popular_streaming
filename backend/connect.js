@@ -18,6 +18,7 @@ function connected(err) {
 // Create the three tables I will need in the database
 // One table to hold user information, one table for shows that have already been watched and one table for watchlist shows
 // Both of the show tables are the same and will be used to quickly access info to be displayed for the user home screen
+// This database schema was setup using Google Gemini as I have very liitle experience in creating a table setup
 
 let sql0 = `CREATE TABLE IF NOT EXISTS Users (
   user_id INTEGER PRIMARY KEY AUTOINCREMENT,
