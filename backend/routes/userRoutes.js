@@ -20,7 +20,7 @@ userRouter.get('/', getUsers);
 userRouter.post('/register', addUser);
 userRouter.post('/login', login);
 
-userRouter.get('/watched', checkToken, getWatched);
+userRouter.post('/watched', checkToken, getWatched);
 userRouter.get('/watchList', checkToken, getWatchList);
 
 userRouter.post('/addWatchedShow', checkToken, addWatchedShow);

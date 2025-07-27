@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 const ShowCard = ({ show }) => {
   const navigate = useNavigate();
+  if (show.image) {
+    show.imageSet.verticalPoster.w360 = show.image;
+  }
   const displaySingle = () => {
     navigate('/show', { state: { id: show.imdbId } });
   };
