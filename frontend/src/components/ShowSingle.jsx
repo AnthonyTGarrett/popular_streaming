@@ -49,7 +49,7 @@ const ShowSingle = ({ id }) => {
             ))}
           </p>
 
-          <div className='grid grid-cols-2 p-4 gap-13 mt-4'>
+          <div className='grid grid-cols-3 p-4 gap-13 mt-4'>
             <h3 className='text-lg md:text-xl self-end underline underline-offset-4'>
               Overview
             </h3>

@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const navigate = useNavigate();
+  let decoded = '';
 
   const loginAction = async data => {
     try {
@@ -20,7 +21,9 @@ const AuthProvider = ({ children }) => {
       });
 
       const res = await response.json();
-      const decoded = jwtDecode(res);
+      if (res.ok) {
+        decoded = jwtDecode(res);
+      }
 
       if (decoded) {
         setUser(decoded.userId);
@@ -32,7 +35,7 @@ const AuthProvider = ({ children }) => {
       }
       throw new Error(res.message);
     } catch (err) {
-      console.log(err);
+      return err.status;
     }
   };
 

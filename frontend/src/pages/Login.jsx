@@ -6,26 +6,21 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [userInput, setUserInput] = useState({
     username: '',
     password: '',
   });
 
-  const [errorMessage, setErrorMessage] = useState('');
-
   const auth = useAuth();
   const handleLoginSubmit = e => {
     e.preventDefault();
     if (userInput.username !== '' && userInput.password !== '') {
-      if (!auth.loginAction(userInput).ok) {
-        return;
-      } else {
-        setErrorMessage('Invalid Credentials');
-      }
-
+      auth.loginAction(userInput);
       return;
     }
+    setErrorMessage('Invalid Credentials');
   };
   const handleInput = e => {
     const { name, value } = e.target;
