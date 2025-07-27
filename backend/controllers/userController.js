@@ -119,7 +119,7 @@ export const login = async (req, res, next) => {
       });
       res.status(200).json(token);
     } else {
-      const error = new Error(`Invalid Username or Password.`);
+      const error = new Error(`Invalid Password.`);
       error.status = 400;
       return next(error);
     }
@@ -132,7 +132,9 @@ export const login = async (req, res, next) => {
 
 export const addWatchedShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+
+  const user_id = jwt.decode(token).userId;
+
   const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
   const showsToWatchTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
@@ -203,7 +205,7 @@ export const addWatchedShow = async (req, res, next) => {
 };
 export const addWatchListShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+  const user_id = jwt.decode(token).userId;
   const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
   const showsToWatchTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
@@ -263,7 +265,7 @@ export const addWatchListShow = async (req, res, next) => {
 
 export const delWatchedShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+  const user_id = jwt.decode(token).userId;
   const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
 
@@ -293,7 +295,7 @@ export const delWatchedShow = async (req, res, next) => {
 };
 export const delWatchListShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+  const user_id = jwt.decode(token).userId;
   const showWatchedTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
 
@@ -325,7 +327,7 @@ export const delWatchListShow = async (req, res, next) => {
 // Returns all shows in the users watched table
 export const getWatched = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+  const user_id = jwt.decode(token).userId;
 
   const sql = `SELECT * FROM ShowsWatched WHERE user_id = ?`;
   let data = { Shows: [] };
@@ -364,7 +366,7 @@ export const getWatched = async (req, res, next) => {
 
 export const getWatchList = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+  const user_id = jwt.decode(token).userId;
 
   const sql = `SELECT * FROM ShowsToWatch WHERE user_id = ?`;
   let data = { Shows: [] };
@@ -403,7 +405,7 @@ export const getWatchList = async (req, res, next) => {
 
 export const clearWatched = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+  const user_id = jwt.decode(token).userId;
 
   const sql = `DELETE FROM ShowsWatched WHERE user_id = ?`;
 
@@ -425,7 +427,7 @@ export const clearWatched = async (req, res, next) => {
 };
 export const clearWatchList = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
-  const user_id = jwt.decode(token).sub;
+  const user_id = jwt.decode(token).userId;
 
   const sql = `DELETE FROM ShowsToWatch WHERE user_id = ?`;
 

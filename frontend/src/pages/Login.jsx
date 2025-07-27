@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/AuthProvider';
-import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
+
+  const location = useLocation();
+
+  const { welcome } = location.state || {};
 
   const [userInput, setUserInput] = useState({
     username: '',
@@ -14,14 +16,14 @@ const Login = () => {
   });
 
   const auth = useAuth();
-  const handleLoginSubmit = e => {
+  const handleLoginSubmit = async e => {
     e.preventDefault();
-    if (userInput.username !== '' && userInput.password !== '') {
-      auth.loginAction(userInput);
-      return;
-    }
-    setErrorMessage('Invalid Credentials');
+    setErrorMessage('');
+
+    const res = await auth.loginAction(userInput);
+    setErrorMessage(res.msg);
   };
+
   const handleInput = e => {
     const { name, value } = e.target;
 
@@ -39,8 +41,11 @@ const Login = () => {
           onSubmit={handleLoginSubmit}
         >
           <h2 className='text-4xl text-center'>Log In Now!</h2>
+          {welcome && (
+            <p className={'text-green-600 text-xl'}>Successfully Added User!</p>
+          )}
           {errorMessage && (
-            <p className={'text-red-600 text-xl'}>Invalid Credentials</p>
+            <p className={'text-red-600 text-xl'}>{errorMessage}</p>
           )}
           <label htmlFor='username'>
             <input
@@ -49,7 +54,10 @@ const Login = () => {
               id='username'
               placeholder='Username'
               required
-              onChange={handleInput}
+              onChange={e => {
+                handleInput(e);
+                setErrorMessage('');
+              }}
               className='bg-[#2c2c2c] border border-[var(--pink)] rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
             ></input>
           </label>
@@ -60,7 +68,10 @@ const Login = () => {
               id='password'
               required
               placeholder='Password'
-              onChange={handleInput}
+              onChange={e => {
+                handleInput(e);
+                setErrorMessage('');
+              }}
               className='bg-[#2c2c2c] border border-[var(--pink)] rounded-lg focus:ring-2 focus:ring-[var(--pink)] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
             ></input>
           </label>

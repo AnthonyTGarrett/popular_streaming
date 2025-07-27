@@ -21,8 +21,11 @@ const AuthProvider = ({ children }) => {
       });
 
       const res = await response.json();
-      if (res.ok) {
+
+      if (typeof res === 'string') {
         decoded = jwtDecode(res);
+      } else {
+        return res;
       }
 
       if (decoded) {
@@ -35,7 +38,7 @@ const AuthProvider = ({ children }) => {
       }
       throw new Error(res.message);
     } catch (err) {
-      return err.status;
+      return err;
     }
   };
 
