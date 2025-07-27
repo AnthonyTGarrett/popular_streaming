@@ -4,7 +4,7 @@ import Watched from '../components/Watched';
 
 const Dashboard = () => {
   return (
-    <div className='mx-auto w-[80vh] mt-20 p-3'>
+    <div className='mx-auto w-[80vw] mt-20 p-3'>
       <WatchList />
       <Watched />
     </div>
