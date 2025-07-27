@@ -2,25 +2,30 @@ import { useState } from 'react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [userInput, setUserInput] = useState({
     username: '',
     password: '',
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState('');
 
   const auth = useAuth();
   const handleLoginSubmit = e => {
     e.preventDefault();
     if (userInput.username !== '' && userInput.password !== '') {
-      auth.loginAction(userInput);
-      setIsLoggedIn(true);
+      if (!auth.loginAction(userInput).ok) {
+        return;
+      } else {
+        setErrorMessage('Invalid Credentials');
+      }
+
       return;
     }
-
-    setErrorMessage('Invalid Credentials');
   };
   const handleInput = e => {
     const { name, value } = e.target;

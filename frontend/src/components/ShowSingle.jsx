@@ -5,7 +5,11 @@ import Spinner from './Spinner';
 const ShowSingle = ({ id }) => {
   const [show, setShow] = useState({});
   const [loading, setLoading] = useState(true);
-  const isLoggedIn = false;
+  let isLoggedIn = false;
+
+  if (localStorage.getItem('user')) {
+    isLoggedIn = true;
+  }
 
   useEffect(() => {
     const fetchShowData = async () => {
@@ -33,7 +37,7 @@ const ShowSingle = ({ id }) => {
       {loading ? (
         <Spinner loading={loading} />
       ) : (
-        <section className='mx-auto flex flex-col w-full md:w-4/6 lg:w-3/6 2xl:w-2/6 mt-8'>
+        <section className='mx-auto flex flex-col w-full md:w-4/6 lg:w-3/6 2xl:w-2/6 mt-8 mb-20'>
           <img src={show.imageSet.horizontalPoster.w720}></img>
           <p className='text-center text-gray-500'>
             {show.genres.map((genre, index) => (

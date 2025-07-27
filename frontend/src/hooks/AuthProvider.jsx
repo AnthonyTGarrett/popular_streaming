@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('site') || '');
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
   const navigate = useNavigate();
 
   const loginAction = async data => {
@@ -20,14 +20,13 @@ const AuthProvider = ({ children }) => {
       });
 
       const res = await response.json();
-      console.log(res);
       const decoded = jwtDecode(res);
 
       if (decoded) {
         setUser(decoded.userId);
         setToken(res);
         localStorage.setItem('user', decoded.userId);
-        localStorage.setItem('site', res);
+        localStorage.setItem('token', `Bearer ${res}`);
         navigate('/dashboard');
         return;
       }
@@ -40,7 +39,7 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     setUser(null);
     setToken('');
-    localStorage.removeItem('site');
+    localStorage.removeItem('token');
     localStorage.removeItem('user');
     navigate('/login');
   };

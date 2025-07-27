@@ -17,7 +17,7 @@ const Navbar = () => {
   const isLandingPage = location.pathname === '/';
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  if (localStorage.getItem('site')) {
+  if (localStorage.getItem('token')) {
     isLoggedIn = true;
   } else {
     isLoggedIn = false;
@@ -69,7 +69,10 @@ const Navbar = () => {
                 ''
               )}
               {isLoggedIn ? (
-                <NavLink onClick={auth.logOut} className={linkClass}>
+                <NavLink
+                  onClick={auth.logOut}
+                  className={`hover:text-[#e0115f]`}
+                >
                   Logout
                 </NavLink>
               ) : (
