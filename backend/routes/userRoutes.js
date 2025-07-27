@@ -21,7 +21,7 @@ userRouter.post('/register', addUser);
 userRouter.post('/login', login);
 
 userRouter.post('/watched', checkToken, getWatched);
-userRouter.get('/watchList', checkToken, getWatchList);
+userRouter.post('/watchList', checkToken, getWatchList);
 
 userRouter.post('/addWatchedShow', checkToken, addWatchedShow);
 userRouter.post('/addWatchListShow', checkToken, addWatchListShow);
