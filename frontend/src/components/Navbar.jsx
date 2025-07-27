@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../hooks/AuthProvider';
 import logo from '../assets/img/logos/logo.png';
 
 const Navbar = () => {
+  let isLoggedIn = true;
   const auth = useAuth();
   const linkClass = ({ isActive }) => {
     return isActive
@@ -16,7 +17,11 @@ const Navbar = () => {
   const isLandingPage = location.pathname === '/';
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isLoggedIn = true;
+  if (localStorage.getItem('site')) {
+    isLoggedIn = true;
+  } else {
+    isLoggedIn = false;
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

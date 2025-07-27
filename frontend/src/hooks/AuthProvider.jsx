@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
       });
 
       const res = await response.json();
+      console.log(res);
       const decoded = jwtDecode(res);
 
       if (decoded) {
