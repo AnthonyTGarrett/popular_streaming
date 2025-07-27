@@ -2,11 +2,9 @@ import React from 'react';
 import { FaStar } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 
-const ShowCard = ({ show }) => {
+const ShowCard = ({ show, seen }) => {
   const navigate = useNavigate();
-  if (show.image) {
-    show.imageSet.verticalPoster.w360 = show.image;
-  }
+
   const displaySingle = () => {
     navigate('/show', { state: { id: show.imdbId } });
   };
@@ -18,10 +16,10 @@ const ShowCard = ({ show }) => {
     >
       <img src={show.imageSet.verticalPoster.w360} className='h-[85%]'></img>
       <div className='flex h-5 justify-between items-center px-2.5'>
-        <div className='self-end flex pb-1.5'>
+        <div className='self-end flex pb-1.5 text-white'>
           {show.releaseYear ? show.releaseYear : show.firstAirYear}
         </div>
-        <div className='h-10 self-end items-center flex gap-1'>
+        <div className='h-10 self-end items-center flex gap-1 text-white'>
           <FaStar color='yellow' /> {show.rating / 10}
         </div>
       </div>
