@@ -50,8 +50,8 @@ const ShowSingle = ({ id }) => {
             ))}
           </p>
 
-          <div className='grid grid-cols-3 p-4 gap-13 mt-4'>
-            <h3 className='text-lg md:text-xl self-end underline underline-offset-4'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 p-4 gap-13 mt-4'>
+            <h3 className='text-center lg:text-left text-lg md:text-xl self-end underline underline-offset-4'>
               Overview
             </h3>
             {isLoggedIn ? (
@@ -59,7 +59,7 @@ const ShowSingle = ({ id }) => {
             ) : (
               <button
                 className='cursor-pointer rounded-lg border-1 border-gray-200
-   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block mx-4 self-auto'
+   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block mx-4 self-auto '
               >
                 <Link to='/login'>Login to Track Shows</Link>
               </button>

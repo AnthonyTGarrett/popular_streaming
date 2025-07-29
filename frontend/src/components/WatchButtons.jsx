@@ -99,7 +99,7 @@ const WatchButtons = ({ show }) => {
     <>
       {watching ? (
         <button
-          className='cursor-pointer rounded-lg border-1 border-gray-200
+          className='w-full cursor-pointer rounded-lg border-1 border-gray-200
    py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#333] text-xs md:text-sm text-center block'
           data-event='markNotWatching'
           onClick={handleClicks}
@@ -108,7 +108,7 @@ const WatchButtons = ({ show }) => {
         </button>
       ) : (
         <button
-          className='cursor-pointer rounded-lg border-1 border-gray-200
+          className='w-full cursor-pointer rounded-lg border-1 border-gray-200
    py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
           data-event='markWatching'
           onClick={handleClicks}
