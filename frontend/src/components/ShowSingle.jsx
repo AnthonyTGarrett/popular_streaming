@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
+import WatchButtons from './WatchButtons';
 
 const ShowSingle = ({ id }) => {
   const [show, setShow] = useState({});
@@ -54,20 +55,7 @@ const ShowSingle = ({ id }) => {
               Overview
             </h3>
             {isLoggedIn ? (
-              <>
-                <button
-                  className='cursor-pointer rounded-lg border-1 border-gray-200
-   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
-                >
-                  Add to WatchList
-                </button>
-                <button
-                  className='cursor-pointer rounded-lg border-1 border-gray-200
-   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
-                >
-                  Mark As Seen
-                </button>
-              </>
+              <WatchButtons show={show} />
             ) : (
               <button
                 className='cursor-pointer rounded-lg border-1 border-gray-200
