@@ -103,7 +103,6 @@ export const addUser = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   const { username, password } = req.body;
-  console.log(username, password);
 
   const dbUser = `SELECT * FROM Users WHERE username = ?`;
 

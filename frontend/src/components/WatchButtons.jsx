@@ -26,6 +26,7 @@ const WatchButtons = ({ show }) => {
     switch (e.target.dataset.event) {
       case 'markSeen':
         setSeen(true);
+        setWatchList(false);
         addToWatched(show.imdbId);
         break;
       case 'markNotSeen':
@@ -35,6 +36,7 @@ const WatchButtons = ({ show }) => {
       case 'markWatching':
         addToWatchList(show.imdbId);
         setWatching(true);
+        setSeen(false);
         break;
       case 'markNotWatching':
         removeFromWatchList(show.imdbId);
