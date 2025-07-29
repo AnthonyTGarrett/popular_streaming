@@ -7,26 +7,42 @@ const WatchButtons = ({ show }) => {
   const [seen, setSeen] = useState(false);
   const [watching, setWatching] = useState(false);
 
+  const addToWatched = id => {
+    console.log('Adding to Watched.', id);
+  };
+  const removeFromWatched = id => {
+    console.log('Removing from Watched', id);
+  };
+  const addToWatchList = id => {
+    console.log('Adding to WatchList', id);
+  };
+  const removeFromWatchList = id => {
+    console.log('Removing from WatchList', id);
+  };
+
   const handleClicks = e => {
     e.preventDefault();
 
     switch (e.target.dataset.event) {
       case 'markSeen':
         setSeen(true);
+        addToWatchList(show.imdbId);
         break;
       case 'markNotSeen':
+        removeFromWatched(show.imdbId);
         setSeen(false);
         break;
       case 'markWatching':
+        addToWatchList(show.imdbId);
         setWatching(true);
         break;
       case 'markNotWatching':
+        removeFromWatchList(show.imdbId);
         setWatching(false);
         break;
       default:
         console.log('Things have went very wrong.');
     }
-    console.log(e.target.dataset.event);
   };
 
   useEffect(() => {
@@ -44,7 +60,7 @@ const WatchButtons = ({ show }) => {
           },
         });
         const data = await res.json();
-        console.log(data.Shows);
+
         console.log(show);
         setWatched(data.Shows);
       } catch (err) {
@@ -69,7 +85,7 @@ const WatchButtons = ({ show }) => {
           },
         });
         const data = await res.json();
-        console.log(data.Shows);
+
         setWatchList(data.Shows);
       } catch (err) {
         console.log(err);
