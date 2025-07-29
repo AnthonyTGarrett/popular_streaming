@@ -25,7 +25,7 @@ const ShowList = ({ formData }) => {
         });
 
         const data = await res.json();
-        console.log(data);
+
         setShows(data);
       } catch (error) {
         console.error('Something is broken', error);

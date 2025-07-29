@@ -8,7 +8,7 @@ const WatchButtons = ({ show }) => {
   const [watching, setWatching] = useState(false);
 
   const addToWatched = id => {
-    console.log('Adding to Watched.', id);
+    console.log('Adding to Watched', id);
   };
   const removeFromWatched = id => {
     console.log('Removing from Watched', id);
@@ -26,7 +26,7 @@ const WatchButtons = ({ show }) => {
     switch (e.target.dataset.event) {
       case 'markSeen':
         setSeen(true);
-        addToWatchList(show.imdbId);
+        addToWatched(show.imdbId);
         break;
       case 'markNotSeen':
         removeFromWatched(show.imdbId);
@@ -61,7 +61,6 @@ const WatchButtons = ({ show }) => {
         });
         const data = await res.json();
 
-        console.log(show);
         setWatched(data.Shows);
       } catch (err) {
         console.log(err);
