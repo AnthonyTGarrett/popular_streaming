@@ -94,9 +94,13 @@ const Navbar = () => {
                 ) : (
                   ''
                 )}
-                <NavLink to='/login' onClick={toggleMenu}>
-                  Login
-                </NavLink>
+                {isLoggedIn ? (
+                  <NavLink onClick={auth.logOut}>Logout</NavLink>
+                ) : (
+                  <NavLink to='/login' onClick={toggleMenu}>
+                    Login
+                  </NavLink>
+                )}
               </div>
             </div>
           </div>
