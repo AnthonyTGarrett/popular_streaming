@@ -8,7 +8,7 @@ const SinglePage = () => {
   const { id } = location.state || {};
 
   return (
-    <div className='text-white text-3xl pt-[150px] min-h-[100vh]'>
+    <div className='text-white text-3xl pt-[150px] min-h-[100vh] w-[80vw] mx-auto'>
       <ShowSingle id={id} />
     </div>
   );

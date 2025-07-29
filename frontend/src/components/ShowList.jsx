@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 
 const ShowList = ({ formData }) => {
   const [shows, setShows] = useState([]);
-  const [watched, setWatched] = useState({});
+  const [watched, setWatched] = useState([]);
   const [watchlist, setWatchList] = useState({});
 
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,6 @@ const ShowList = ({ formData }) => {
         });
 
         const data = await res.json();
-        console.log(data);
         setShows(data);
       } catch (error) {
         console.error('Something is broken', error);
@@ -37,22 +36,23 @@ const ShowList = ({ formData }) => {
   }, [formData]);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+
     if (localStorage.getItem('user')) {
       const fetchData = async () => {
         try {
-          const url = 'http://localhost:8080/users/getWatched';
+          const url = 'http://localhost:8080/users/watched';
 
           const res = await fetch(url, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              Authorization: `${token}`,
             },
-            Authorization: `${localStorage.getItem('token')}`,
-            body: JSON.stringify(localStorage.getItem('user')),
           });
-
           const data = await res.json();
-          setWatched(data);
+
+          setWatched(data.Shows);
         } catch (error) {
           console.error('Something is broken', error);
         }

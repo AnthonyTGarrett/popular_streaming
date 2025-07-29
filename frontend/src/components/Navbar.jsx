@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../hooks/AuthProvider';
@@ -87,7 +87,13 @@ const Navbar = () => {
                   Home
                 </NavLink>
 
-                {isLoggedIn ? <NavLink to='/watchlist'>Watchlist</NavLink> : ''}
+                {isLoggedIn ? (
+                  <NavLink to='/dashboard' onClick={toggleMenu}>
+                    Watchlist
+                  </NavLink>
+                ) : (
+                  ''
+                )}
                 <NavLink to='/login' onClick={toggleMenu}>
                   Login
                 </NavLink>

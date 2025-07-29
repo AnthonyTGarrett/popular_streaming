@@ -21,7 +21,9 @@ const Login = () => {
     setErrorMessage('');
 
     const res = await auth.loginAction(userInput);
-    setErrorMessage(res.msg);
+    if (res.msg) {
+      setErrorMessage(res.msg);
+    }
   };
 
   const handleInput = e => {

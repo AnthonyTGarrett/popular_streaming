@@ -37,7 +37,7 @@ const ShowSingle = ({ id }) => {
       {loading ? (
         <Spinner loading={loading} />
       ) : (
-        <section className='mx-auto flex flex-col w-full md:w-4/6 lg:w-3/6 2xl:w-2/6 mt-8 mb-20'>
+        <section className='mx-auto flex flex-col w-full md:w-4/6 lg:w-3/6 2xl:w-4/6 mt-8 mb-20 px-8 shadow-2xl'>
           <img src={show.imageSet.horizontalPoster.w720}></img>
           <p className='text-center text-gray-500'>
             {show.genres.map((genre, index) => (
@@ -55,7 +55,6 @@ const ShowSingle = ({ id }) => {
             </h3>
             {isLoggedIn ? (
               <>
-                {' '}
                 <button
                   className='cursor-pointer rounded-lg border-1 border-gray-200
    py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
@@ -67,7 +66,7 @@ const ShowSingle = ({ id }) => {
    py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#e0115f] text-xs md:text-sm text-center block'
                 >
                   Mark As Seen
-                </button>{' '}
+                </button>
               </>
             ) : (
               <button
@@ -148,7 +147,7 @@ const ShowSingle = ({ id }) => {
                     className='flex flex-col items-center content-center w-[60%]'
                   >
                     <img src={service.service.imageSet.darkThemeImage}></img>
-                    <p className='text-base text-center'>
+                    <p className='text-base'>
                       {service.type}&nbsp;
                       {service.price ? service.price.formatted : ''}
                     </p>

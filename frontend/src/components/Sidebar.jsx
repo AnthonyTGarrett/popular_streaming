@@ -10,9 +10,9 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
         const url = 'http://localhost:8080/api/genres/getAllGenres';
 
         const res = await fetch(url);
-        console.log(res);
+
         const data = await res.json();
-        console.log(data);
+
         setGenres(data);
       } catch (error) {
         console.error('Something is broken', error);
