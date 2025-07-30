@@ -12,8 +12,8 @@ import WatchProvider from './hooks/WatchProvider';
 
 function App() {
   return (
-    <WatchProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <WatchProvider>
         <Routes>
           <Route path='/' element={<MainLayout />}>
             <Route index element={<LandingPage />} />
@@ -26,8 +26,8 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </AuthProvider>
-    </WatchProvider>
+      </WatchProvider>
+    </AuthProvider>
   );
 }
 
