@@ -11,6 +11,7 @@ const ShowCard = ({ show, seen = false }) => {
     image = show.image;
   }
   const displaySingle = () => {
+    console.log(show.imdbId);
     navigate('/show', { state: { id: show.imdbId } });
   };
 

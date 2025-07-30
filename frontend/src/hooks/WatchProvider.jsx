@@ -45,13 +45,101 @@ const WatchProvider = ({ children }) => {
     }
   }, []);
 
-  const addWatched = async () => {};
+  const addWatched = async imdbId => {
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const url = 'http://localhost:8080/users/addWatchedShow';
 
-  const delWatched = async () => {};
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token,
+            },
+            body: JSON.stringify({ imdbId }),
+          });
+          await res.json();
+          setWatched(watched);
+        } catch (error) {
+          console.error('Something is broken', error);
+        }
+      };
+      fetchData();
+    }
+  };
 
-  const addWatching = async () => {};
+  const delWatched = async imdbId => {
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const url = 'http://localhost:8080/users/delWatchedShow';
 
-  const delWatching = async () => {};
+          const res = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token,
+            },
+            body: JSON.stringify({ imdbId }),
+          });
+          await res.json();
+          setWatched(watched);
+        } catch (error) {
+          console.error('Something is broken', error);
+        }
+      };
+      fetchData();
+    }
+  };
+
+  const addWatching = async imdbId => {
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const url = 'http://localhost:8080/users/addWatchListShow';
+
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token,
+            },
+            body: JSON.stringify({ imdbId }),
+          });
+          await res.json();
+          setWatched(watched);
+        } catch (error) {
+          console.error('Something is broken', error);
+        }
+      };
+      fetchData();
+    }
+  };
+
+  const delWatching = async imdbId => {
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const url = 'http://localhost:8080/users/delWatchListShow';
+
+          const res = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: token,
+            },
+            body: JSON.stringify({ imdbId }),
+          });
+          await res.json();
+          setWatched(watched);
+        } catch (error) {
+          console.error('Something is broken', error);
+        }
+      };
+      fetchData();
+    }
+  };
 
   return (
     <WatchContext.Provider

@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { FaCheck } from 'react-icons/fa6';
+import { useWatch } from '../hooks/WatchProvider';
 
 const WatchButtons = ({ show }) => {
   const [watched, setWatched] = useState([]);
   const [watchList, setWatchList] = useState([]);
   const [seen, setSeen] = useState(false);
   const [watching, setWatching] = useState(false);
+  const WatchLists = useWatch();
 
   const addToWatched = id => {
-    console.log('Adding to Watched', id);
+    WatchLists.addWatched(id);
   };
   const removeFromWatched = id => {
-    console.log('Removing from Watched', id);
+    WatchLists.delWatched(id);
   };
   const addToWatchList = id => {
-    console.log('Adding to WatchList', id);
+    WatchLists.addWatching(id);
   };
   const removeFromWatchList = id => {
-    console.log('Removing from WatchList', id);
+    WatchLists.delWatching(id);
   };
 
   const handleClicks = e => {
