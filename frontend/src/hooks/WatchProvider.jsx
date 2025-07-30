@@ -5,7 +5,6 @@ const WatchContext = createContext();
 const WatchProvider = ({ children }) => {
   const [watched, setWatched] = useState([]);
   const [watching, setWatching] = useState([]);
-  const run = true;
 
   const token = localStorage.getItem('token');
 
@@ -25,8 +24,6 @@ const WatchProvider = ({ children }) => {
           const watchedData = await watchedResponse.json();
           setWatched(watchedData);
 
-          console.log(watched);
-
           const watchingUrl = 'http://localhost:8080/users/watchList';
           const res = await fetch(watchingUrl, {
             method: 'POST',
@@ -37,7 +34,6 @@ const WatchProvider = ({ children }) => {
           });
           const watchingData = await res.json();
           setWatching(watchingData);
-          console.log(watching);
         } catch (error) {
           console.error('Something is broken', error);
         }
@@ -47,7 +43,7 @@ const WatchProvider = ({ children }) => {
       setWatched(null);
       setWatching(null);
     }
-  }, [run]);
+  }, []);
 
   const addWatched = async () => {};
 
@@ -62,7 +58,6 @@ const WatchProvider = ({ children }) => {
       value={{
         watched,
         watching,
-        run,
         addWatched,
         delWatched,
         addWatching,
