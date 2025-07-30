@@ -16,7 +16,9 @@ const ShowCard = ({ show, seen = false }) => {
 
   return (
     <div
-      className={`flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer hover:shadow-2xl transition-all duration-250`}
+      className={`flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer hover:shadow-2xl transition-all duration-250 ${
+        seen ? 'grayscale' : ''
+      }`}
       onClick={displaySingle}
     >
       <img src={image} className='h-[85%]'></img>

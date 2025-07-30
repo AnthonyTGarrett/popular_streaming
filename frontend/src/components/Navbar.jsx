@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/AuthProvider';
 import logo from '../assets/img/logos/logo.png';
 
 const Navbar = () => {
-  let isLoggedIn = true;
+  let isLoggedIn = false;
   const auth = useAuth();
   const linkClass = ({ isActive }) => {
     return isActive
@@ -70,6 +70,7 @@ const Navbar = () => {
               )}
               {isLoggedIn ? (
                 <NavLink
+                  to='/login'
                   onClick={auth.logOut}
                   className={`hover:text-[#e0115f]`}
                 >

@@ -8,37 +8,26 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import AuthProvider from './hooks/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
+import WatchProvider from './hooks/WatchProvider';
 
 function App() {
-  // const router = createBrowserRouter(
-  //   createRoutesFromElements(
-  //     <Route path='/' element={<MainLayout />}>
-  //       <Route index element={<LandingPage />} />
-  //       <Route path='/home' element={<HomePage />} />
-  //       <Route path='/show' element={<SinglePage />} />
-  //       <Route path='/login' element={<Login />} />
-  //       <Route path='/register' element={<Register />} />
-  //       <Route path='/dashboard' element={<Dashboard />} />
-  //     </Route>
-  //   )
-  // );
-  // <RouterProvider router={router} />
-
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path='/' element={<MainLayout />}>
-          <Route index element={<LandingPage />} />
-          <Route path='/home' element={<HomePage />} />
-          <Route path='/show' element={<SinglePage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route element={<PrivateRoute />}>
-            <Route path='/dashboard' element={<Dashboard />} />
+    <WatchProvider>
+      <AuthProvider>
+        <Routes>
+          <Route path='/' element={<MainLayout />}>
+            <Route index element={<LandingPage />} />
+            <Route path='/home' element={<HomePage />} />
+            <Route path='/show' element={<SinglePage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route element={<PrivateRoute />}>
+              <Route path='/dashboard' element={<Dashboard />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </AuthProvider>
+        </Routes>
+      </AuthProvider>
+    </WatchProvider>
   );
 }
 

@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <div className='mx-auto w-[80vw] mt-20 p-3'>
       <WatchList />
-      <Watched />
+      <Watched seen={true} />
     </div>
   );
 };
