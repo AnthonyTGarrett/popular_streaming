@@ -11,14 +11,13 @@ const ShowCard = ({ show, seen = false }) => {
     image = show.image;
   }
   const displaySingle = () => {
-    console.log(show.imdbId);
     navigate('/show', { state: { id: show.imdbId } });
   };
 
   return (
     <div
-      className={`flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer hover:shadow-2xl transition-all duration-250 ${
-        seen ? 'grayscale' : ''
+      className={`flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer hover:shadow-2xl transition-all duration-250 relative ${
+        seen ? 'grayscale watched' : ''
       }`}
       onClick={displaySingle}
     >

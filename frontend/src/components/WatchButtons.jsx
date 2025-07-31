@@ -3,11 +3,12 @@ import { FaCheck } from 'react-icons/fa6';
 import { useWatch } from '../hooks/WatchProvider';
 
 const WatchButtons = ({ show }) => {
-  const [watched, setWatched] = useState([]);
-  const [watchList, setWatchList] = useState([]);
   const [seen, setSeen] = useState(false);
-  const [watching, setWatching] = useState(false);
+  const [watchList, setWatchList] = useState(false);
+
   const WatchLists = useWatch();
+
+  const { watched, watching, isLoggedIn } = WatchLists;
 
   const addToWatched = id => {
     WatchLists.addWatched(id);
@@ -37,12 +38,12 @@ const WatchButtons = ({ show }) => {
         break;
       case 'markWatching':
         addToWatchList(show.imdbId);
-        setWatching(true);
+        setWatchList(true);
         setSeen(false);
         break;
       case 'markNotWatching':
         removeFromWatchList(show.imdbId);
-        setWatching(false);
+        setWatchList(false);
         break;
       default:
         console.log('Things have went very wrong.');
@@ -50,56 +51,61 @@ const WatchButtons = ({ show }) => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    const fetchData = async () => {
-      try {
-        const url = 'http://localhost:8080/users/watched';
-
-        const res = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `${token}`,
-          },
-        });
-        const data = await res.json();
-
-        setWatched(data.Shows);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
+    setSeen(watched.Shows.find(obj => obj.imdbId === show.imdbId));
+    setWatchList(watching.Shows.find(obj => obj.imdbId === show.imdbId));
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
 
-    const fetchData = async () => {
-      try {
-        const url = 'http://localhost:8080/users/watchList';
+  //   const fetchData = async () => {
+  //     try {
+  //       const url = 'http://localhost:8080/users/watched';
 
-        const res = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `${token}`,
-          },
-        });
-        const data = await res.json();
+  //       const res = await fetch(url, {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `${token}`,
+  //         },
+  //       });
+  //       const data = await res.json();
 
-        setWatchList(data.Shows);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
+  //       setWatched(data.Shows);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+
+  //   const fetchData = async () => {
+  //     try {
+  //       const url = 'http://localhost:8080/users/watchList';
+
+  //       const res = await fetch(url, {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `${token}`,
+  //         },
+  //       });
+  //       const data = await res.json();
+
+  //       setWatchList(data.Shows);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <>
-      {watching ? (
+      {watchList ? (
         <button
           className='w-full cursor-pointer rounded-lg border-1 border-gray-200
    py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#333] text-xs md:text-sm text-center block'

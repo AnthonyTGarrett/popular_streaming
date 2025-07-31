@@ -7,6 +7,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   let decoded = '';
 
@@ -34,6 +35,7 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('user', decoded.userId);
         localStorage.setItem('token', `Bearer ${res}`);
         navigate('/dashboard');
+        setIsLoggedIn(true);
         return;
       }
       throw new Error(res.message);
@@ -48,6 +50,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     navigate('/login');
+    setIsLoggedIn(false);
   };
 
   return (

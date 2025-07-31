@@ -52,6 +52,17 @@ body {
     url(../src/assets/img/hero-image.jpg);
 }
 
+.watched::before {
+  content: 'Watched';
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  color: #e0115f;
+  font-size: 2.5rem;
+  font-weight: bold;
+  transform: rotate(45deg);
+}
+
 @media screen and (max-width: 1150px) {
   main {
     padding-top: 3rem;

@@ -209,11 +209,11 @@ export const addWatchListShow = async (req, res, next) => {
   const showsToWatchTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
 
-  if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
-    const error = new Error('You have already seen this show.');
-    error.status = 400;
-    return next(error);
-  }
+  // if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
+  //   const error = new Error('You have already seen this show.');
+  //   error.status = 400;
+  //   return next(error);
+  // }
 
   if (await fetchFirst(db, showsToWatchTest, [imdbId, user_id])) {
     const error = new Error('This show is already on your watch list.');
@@ -232,6 +232,21 @@ export const addWatchListShow = async (req, res, next) => {
     return next(error);
   }
   const { showType, title, overview, rating } = response.data;
+
+  if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
+    const delheaders = {
+      Authorization: req.header('Authorization'),
+      'Content-Type': 'application/json',
+    };
+
+    await axios.delete(
+      `http://localhost:${process.env.PORT}/users/delWatchedShow`,
+      {
+        headers: delheaders,
+        data: req.body,
+      }
+    );
+  }
 
   const sql = `INSERT INTO ShowsToWatch(user_id, imdbId, showType, title, overview, rating, image) VALUES(?, ?, ?, ?, ?, ?, ?)`;
   const inserts = [
