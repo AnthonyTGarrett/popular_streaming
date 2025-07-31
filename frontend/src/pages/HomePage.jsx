@@ -4,13 +4,23 @@ import ShowList from '../components/ShowList';
 import MainHeader from '../components/MainHeader';
 
 const HomePage = () => {
-  const [formData, setFormData] = useState({
+  const initialState = {
     country: 'us',
     catalogs: [],
     genres: [],
     keyword: '',
     showType: null,
     orderBy: 'popularity_alltime',
+  };
+
+  const [formData, setFormData] = useState(() => {
+    try {
+      const storedData = localStorage.getItem('storedForm');
+      return storedData ? JSON.parse(storedData) : initialState;
+    } catch (err) {
+      console.log('Error retrieving data from storage', err);
+      return initialState;
+    }
   });
 
   const onFormChange = event => {
@@ -55,11 +65,16 @@ const HomePage = () => {
     setFormData(oldFormData => ({ ...oldFormData, [name]: value }));
   };
 
+  useEffect(() => {
+    localStorage.setItem('storedForm', JSON.stringify(formData));
+  }, [formData]);
+
   return (
     <>
       <MainHeader formData={formData} />
       <main className='grid grid-cols-1 sm:grid-cols-[25%_75%] md:grid-cols-[35%_65%] lg:grid-cols-[35%_65%] xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[50px] mb-10 min-h-[100vh]'>
         <Sidebar
+          setFormData={setFormData}
           formData={formData}
           onFormChange={onFormChange}
           onFormSubmit={onFormSubmit}

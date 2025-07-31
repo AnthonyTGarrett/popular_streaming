@@ -33,7 +33,6 @@ const WatchButtons = ({ show }) => {
     switch (e.target.dataset.event) {
       case 'markSeen':
         setSeen(true);
-
         setWatchList(false);
         addToWatched(show.imdbId);
         break;

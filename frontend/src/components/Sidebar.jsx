@@ -2,7 +2,17 @@ import Checkbox from './Checkbox';
 
 import genres from '../assets/genres';
 
-const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
+const Sidebar = ({ formData, onFormChange, onFormSubmit, setFormData }) => {
+  const resetForm = () => {
+    setFormData({
+      country: 'us',
+      catalogs: [''],
+      genres: [],
+      keyword: '',
+      showType: null,
+      orderBy: 'popularity_alltime',
+    });
+  };
   return (
     <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-15 bg-[#2c2c2c] grid grid-cols-1'>
       <form
@@ -20,6 +30,14 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
             className='bg-[#2c2c2c] border border-[#E0115F] rounded-lg focus:ring-2 focus:ring-[#E0115F] focus:outline-none block w-full py-1 px-2 text-gray-300 text-2xl placeholder:text-gray-500 placeholder:text-lg mt-3'
           />
         </div>
+
+        <p
+          className='mb-5 text-[#e0155f] -mt-4 cursor-pointer'
+          onClick={resetForm}
+        >
+          Reset
+        </p>
+
         <div className='mb-5'>
           <div className='flex space-x-1 mt-3'>
             <div className='relative'>
@@ -34,7 +52,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit }) => {
               />
               <label
                 htmlFor='all'
-                className='px-3 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] checked:bg-[#e0115f]peer-checked:text-white'
+                className='px-3 py-2 rounded-md border border-gray-300 cursor-pointer peer-checked:bg-[#e0115f] checked:bg-[#e0115f] peer-checked:text-white'
               >
                 All
               </label>

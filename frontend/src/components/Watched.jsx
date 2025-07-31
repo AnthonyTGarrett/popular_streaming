@@ -21,7 +21,7 @@ const Watched = ({ seen }) => {
           },
         });
         const data = await res.json();
-        console.log(data);
+
         setShows(data.Shows);
       } catch (err) {
         console.log(err);
