@@ -7,6 +7,7 @@ const ShowList = ({ formData }) => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
   let seen = false;
+  let watching = false;
 
   const watchLists = useWatch();
 
@@ -55,7 +56,20 @@ const ShowList = ({ formData }) => {
                   );
                 }
 
-                return <ShowCard key={index} show={show} seen={seen} />;
+                if (watchLists) {
+                  watching = watchLists?.watching?.Shows?.find(
+                    obj => obj.imdbId === show.imdbId
+                  );
+                }
+
+                return (
+                  <ShowCard
+                    key={index}
+                    show={show}
+                    seen={seen}
+                    watching={watching}
+                  />
+                );
               })
             ) : (
               <p className='text-2xl mt-10 text-center'>No results found.</p>

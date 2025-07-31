@@ -143,24 +143,20 @@ export const getShowFromFilter = async (req, res, next) => {
   const incoming = req.body;
   console.log(incoming);
 
-  // let totalData = [];
-  // let pages = 0;
-  // const PAGES_TO_FETCH = 5;
+  let totalData = [];
+  let pages = 0;
+  const PAGES_TO_FETCH = 1;
 
   try {
     let response = await client.showsApi.searchShowsByFilters(incoming);
-    res.status(200).json(response.shows);
-    // res.send(response);
-    // let response = await client.showsApi.searchShowsByFilters(incoming);
-    // while (response.hasMore && pages < 3) {
-    //   response = await client.showsApi.searchShowsByFilters(incoming);
-    //   totalData = totalData.concat(response.shows);
-    //   incoming.cursor = response.nextCursor;
-    //   pages++;
-    // }
-    // res.status(200).json(response.shows)
-    // res.status(200).json(totalData);
-    // res.status(200).json(totalData);
+    while (response.hasMore && pages < PAGES_TO_FETCH) {
+      response = await client.showsApi.searchShowsByFilters(incoming);
+      totalData = totalData.concat(response.shows);
+      incoming.cursor = response.nextCursor;
+      pages++;
+    }
+
+    res.status(200).json(totalData);
   } catch (error) {
     // error.message = 'No results found';
     error.status = 404;
