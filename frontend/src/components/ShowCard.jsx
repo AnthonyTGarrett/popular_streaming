@@ -17,12 +17,16 @@ const ShowCard = ({ show, seen = false }) => {
   return (
     <div
       className={`flex flex-col p-3 rounded-md justify-between bg-black hover:bg-[#444] hover:rounded cursor-pointer hover:shadow-2xl transition-all duration-250 relative ${
-        seen ? 'grayscale watched' : ''
+        seen ? 'watched' : ''
       }`}
       onClick={displaySingle}
     >
-      <img src={image} className='h-[85%]'></img>
-      <div className='flex h-5 justify-between items-center px-2.5'>
+      <img src={image} className={`h-[85%] ${seen ? 'grayscale' : ''}`}></img>
+      <div
+        className={`flex h-5 justify-between items-center px-2.5 ${
+          seen ? 'grayscale' : ''
+        }`}
+      >
         <div className='self-end flex pb-1.5 text-white'>
           {show.releaseYear
             ? show.releaseYear

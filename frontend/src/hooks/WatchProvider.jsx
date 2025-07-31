@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useAuth } from './AuthProvider';
 
 const WatchContext = createContext();
 
@@ -8,7 +7,6 @@ const WatchProvider = ({ children }) => {
   const [watching, setWatching] = useState([]);
 
   const token = localStorage.getItem('token');
-  const auth = useAuth();
 
   useEffect(() => {
     if (token) {
@@ -45,7 +43,7 @@ const WatchProvider = ({ children }) => {
       setWatched(null);
       setWatching(null);
     }
-  }, [auth.isLoggedIn]);
+  }, []);
 
   const addWatched = async imdbId => {
     if (token) {
@@ -61,7 +59,7 @@ const WatchProvider = ({ children }) => {
             },
             body: JSON.stringify({ imdbId }),
           });
-          await res.json();
+          const data = await res.json();
           setWatched(watched);
         } catch (error) {
           console.error('Something is broken', error);
@@ -85,7 +83,7 @@ const WatchProvider = ({ children }) => {
             },
             body: JSON.stringify({ imdbId }),
           });
-          await res.json();
+          const data = await res.json();
           setWatched(watched);
         } catch (error) {
           console.error('Something is broken', error);
@@ -109,7 +107,7 @@ const WatchProvider = ({ children }) => {
             },
             body: JSON.stringify({ imdbId }),
           });
-          await res.json();
+          const data = await res.json();
           setWatched(watched);
         } catch (error) {
           console.error('Something is broken', error);
@@ -133,7 +131,7 @@ const WatchProvider = ({ children }) => {
             },
             body: JSON.stringify({ imdbId }),
           });
-          await res.json();
+          const data = await res.json();
           setWatched(watched);
         } catch (error) {
           console.error('Something is broken', error);

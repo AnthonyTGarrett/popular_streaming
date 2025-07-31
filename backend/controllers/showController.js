@@ -141,7 +141,7 @@ export const getTopMovies = async (req, res, next) => {
 export const getShowFromFilter = async (req, res, next) => {
   // Express.json() converting the body from a string to json object
   const incoming = req.body;
-  // console.log(incoming);
+  console.log(incoming);
 
   // let totalData = [];
   // let pages = 0;

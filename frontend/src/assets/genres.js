@@ -65,11 +65,11 @@ const genres = [
   },
   {
     id: 'scifi',
-    name: 'Science Fiction',
+    name: 'scifi',
   },
   {
     id: 'talk',
-    name: 'Talk Show',
+    name: 'talk',
   },
   {
     id: 'thriller',

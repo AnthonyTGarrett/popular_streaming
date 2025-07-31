@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 import WatchButtons from './WatchButtons';
+import { useWatch } from '../hooks/WatchProvider';
 
 const ShowSingle = ({ id }) => {
   const [show, setShow] = useState({});

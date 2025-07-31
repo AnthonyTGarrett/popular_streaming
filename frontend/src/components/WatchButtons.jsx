@@ -8,7 +8,7 @@ const WatchButtons = ({ show }) => {
 
   const WatchLists = useWatch();
 
-  const { watched, watching, isLoggedIn } = WatchLists;
+  const { watched, watching } = WatchLists;
 
   const addToWatched = id => {
     WatchLists.addWatched(id);
@@ -29,6 +29,7 @@ const WatchButtons = ({ show }) => {
     switch (e.target.dataset.event) {
       case 'markSeen':
         setSeen(true);
+
         setWatchList(false);
         addToWatched(show.imdbId);
         break;
@@ -51,57 +52,10 @@ const WatchButtons = ({ show }) => {
   };
 
   useEffect(() => {
-    setSeen(watched.Shows.find(obj => obj.imdbId === show.imdbId));
-    setWatchList(watching.Shows.find(obj => obj.imdbId === show.imdbId));
+    setSeen(watched?.Shows?.find(obj => obj.imdbId === show.imdbId));
+
+    setWatchList(watching?.Shows?.find(obj => obj.imdbId === show.imdbId));
   }, []);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-
-  //   const fetchData = async () => {
-  //     try {
-  //       const url = 'http://localhost:8080/users/watched';
-
-  //       const res = await fetch(url, {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `${token}`,
-  //         },
-  //       });
-  //       const data = await res.json();
-
-  //       setWatched(data.Shows);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-
-  //   const fetchData = async () => {
-  //     try {
-  //       const url = 'http://localhost:8080/users/watchList';
-
-  //       const res = await fetch(url, {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `${token}`,
-  //         },
-  //       });
-  //       const data = await res.json();
-
-  //       setWatchList(data.Shows);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import ShowCard from './ShowCard';
+import { Link } from 'react-router-dom';
 
 const WatchList = () => {
   const [shows, setShows] = useState([]);
@@ -36,8 +37,11 @@ const WatchList = () => {
         {shows ? (
           shows.map((show, index) => <ShowCard key={index} show={show} />)
         ) : (
-          <p className='text-2xl mt-20 text-center text-white'>
+          <p className='text-2xl mt-20 text-center text-white flex flex-col'>
             No results found.
+            <Link to='/home' className='text-lg text-[#e0115f] mt-5 underline'>
+              Add some Shows Now!
+            </Link>
           </p>
         )}
       </section>
