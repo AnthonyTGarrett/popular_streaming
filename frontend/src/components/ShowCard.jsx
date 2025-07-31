@@ -10,6 +10,7 @@ const ShowCard = ({ show, seen = false, watching = false }) => {
   } else {
     image = show.image;
   }
+
   const displaySingle = () => {
     navigate('/show', { state: { id: show.imdbId } });
   };
@@ -21,10 +22,16 @@ const ShowCard = ({ show, seen = false, watching = false }) => {
       }`}
       onClick={displaySingle}
     >
-      {seen ? <span className='watched-text'>Watched</span> : ''}
+      {seen ? (
+        <>
+          <span className='watched-text'>Watched</span>{' '}
+        </>
+      ) : (
+        ''
+      )}
       <img src={image} className={`h-[85%] ${seen ? 'grayscale' : ''}`}></img>
       <div
-        className={`flex h-5 justify-between items-center px-2.5 ${
+        className={`flex h-10 justify-between items-center px-2.5 ${
           seen ? 'grayscale' : ''
         }`}
       >

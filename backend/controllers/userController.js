@@ -361,6 +361,7 @@ export const getWatched = async (req, res, next) => {
             overview: row.overview,
             rating: row.rating,
             image: row.image,
+            createdAt: row.createdAt,
           });
         });
 

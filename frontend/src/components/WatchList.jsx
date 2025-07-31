@@ -33,7 +33,7 @@ const WatchList = () => {
   return (
     <>
       <h2 className='text-white text-3xl my-10'>Shows to Watch</h2>
-      <section className='min-h-[45vh] grid grid-cols-1 auto-rows-max md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
+      <section className='min-h-[45vh] grid grid-cols-1 auto-rows-max md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-5'>
         {shows ? (
           shows.map((show, index) => <ShowCard key={index} show={show} />)
         ) : (

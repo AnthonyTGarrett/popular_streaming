@@ -21,6 +21,7 @@ const Watched = ({ seen }) => {
           },
         });
         const data = await res.json();
+        console.log(data);
         setShows(data.Shows);
       } catch (err) {
         console.log(err);
@@ -32,7 +33,7 @@ const Watched = ({ seen }) => {
   return (
     <>
       <h2 className='text-white text-3xl my-10'>Shows Watched</h2>
-      <section className='min-h-[45vh] grid grid-cols-1 auto-rows-max md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5 mb-10'>
+      <section className='min-h-[45vh] grid grid-cols-1 auto-rows-max md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-5 mb-10'>
         {shows ? (
           shows.map((show, index) => (
             <ShowCard key={index} show={show} seen={seen} />

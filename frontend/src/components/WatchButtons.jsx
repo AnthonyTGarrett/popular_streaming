@@ -56,7 +56,6 @@ const WatchButtons = ({ show }) => {
   };
 
   useEffect(() => {
-    console.log(watched);
     setSeen(watched?.Shows?.find(obj => obj.imdbId === show.imdbId));
 
     setWatchList(watching?.Shows?.find(obj => obj.imdbId === show.imdbId));
