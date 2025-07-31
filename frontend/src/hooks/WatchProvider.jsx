@@ -6,6 +6,8 @@ const WatchProvider = ({ children }) => {
   const [watched, setWatched] = useState([]);
   const [watching, setWatching] = useState([]);
 
+  const [syncVar, setSyncVar] = useState(1);
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const WatchProvider = ({ children }) => {
       setWatched(null);
       setWatching(null);
     }
-  }, []);
+  }, [syncVar]);
 
   const addWatched = async imdbId => {
     if (token) {
@@ -144,6 +146,7 @@ const WatchProvider = ({ children }) => {
   return (
     <WatchContext.Provider
       value={{
+        setSyncVar,
         watched,
         watching,
         addWatched,

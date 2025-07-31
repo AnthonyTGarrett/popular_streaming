@@ -10,6 +10,8 @@ const ShowList = ({ formData }) => {
 
   const watchLists = useWatch();
 
+  const { setSyncVar } = watchLists;
+
   useEffect(() => {
     setLoading(true);
     window.scrollTo(0, 0);
@@ -35,6 +37,7 @@ const ShowList = ({ formData }) => {
       }
     };
     fetchData();
+    setSyncVar(prev => prev + 1);
   }, [formData]);
 
   return (

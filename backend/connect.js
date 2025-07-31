@@ -41,6 +41,7 @@ let sql1 = `
   overview TEXT,
   rating INTEGER CHECK(rating >=1 AND rating <= 100),
   image TEXT,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
   );`;
 

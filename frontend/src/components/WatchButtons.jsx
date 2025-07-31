@@ -8,19 +8,23 @@ const WatchButtons = ({ show }) => {
 
   const WatchLists = useWatch();
 
-  const { watched, watching } = WatchLists;
+  const { setSyncVar, watched, watching } = WatchLists;
 
   const addToWatched = id => {
     WatchLists.addWatched(id);
+    setSyncVar(prev => prev + 1);
   };
   const removeFromWatched = id => {
     WatchLists.delWatched(id);
+    setSyncVar(prev => prev + 1);
   };
   const addToWatchList = id => {
     WatchLists.addWatching(id);
+    setSyncVar(prev => prev + 1);
   };
   const removeFromWatchList = id => {
     WatchLists.delWatching(id);
+    setSyncVar(prev => prev + 1);
   };
 
   const handleClicks = e => {
@@ -52,6 +56,7 @@ const WatchButtons = ({ show }) => {
   };
 
   useEffect(() => {
+    console.log(watched);
     setSeen(watched?.Shows?.find(obj => obj.imdbId === show.imdbId));
 
     setWatchList(watching?.Shows?.find(obj => obj.imdbId === show.imdbId));
