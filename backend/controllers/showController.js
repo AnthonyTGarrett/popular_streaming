@@ -139,7 +139,6 @@ export const getTopMovies = async (req, res, next) => {
 // @desc Series and Movies by multiple filters
 // @route GET /api/search/filters
 export const getShowFromFilter = async (req, res, next) => {
-  // Express.json() converting the body from a string to json object
   const incoming = req.body;
 
   let totalData = [];
