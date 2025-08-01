@@ -1,51 +1,54 @@
 # Popular Streaming
 
-[![GitHub Stars](https://img.shields.io/github/stars/IgorAntun/node-chat.svg)](https://github.com/IgorAntun/node-chat/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/IgorAntun/node-chat.svg)](https://github.com/IgorAntun/node-chat/issues) [![Current Version](https://img.shields.io/badge/version-1.0.7-green.svg)](https://github.com/IgorAntun/node-chat) [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://igorantun.com/chat) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/IgorAntun/node-chat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+## Project Overview
 
-This is a node.js chat application powered by SockJS and Express that provides the main functions you'd expect from a chat, such as emojis, private messages, an admin system, etc.
+This is full-stack web application that allows the users to search for tv shows and movies that are streaming across many services. The user can login to save their own watch list and list of previously seen shows. While the user is logged it all of the shows will highlight the ones from their watch list and previously seen lists.
 
-![Chat Preview](http://i.imgur.com/lgRe8z4.png)
+## Tech Overview
 
----
+3rd Party API that finds information about shows on
 
-## Buy me a coffee
+Backend Stack
 
-Whether you use this project, have learned something from it, or just like it, please consider supporting it by buying me a coffee, so I can dedicate more time on open-source projects like this :)
+- [NodeJS](https://nodejs.org/en)
+- [ExpressJS](https://expressjs.com/)
+- [SQLite](https://www.sqlite.org/)
 
-<a href="https://www.buymeacoffee.com/igorantun" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+Frontend Stack
 
----
+- HTML, CSS, Javascript
+- [ReactJS](https://react.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 ## Features
 
-- Material Design
-- Emoji support
-- User @mentioning
-- Private messaging
-- Message deleting (for admins)
-- Ability to kick/ban users (for admins)
-- See other user's IPs (for admins)
-- Other awesome features yet to be implemented
-
-![User Features](http://i.imgur.com/WbF1fi2.png)
-
-![Admin Features](http://i.imgur.com/xQFaadt.png)
-
-#### There are 3 admin levels:
-
-- **Helper:** Can delete chat messages
-- **Moderator:** The above plus the ability to kick and ban users
-- **Administrator:** All the above plus send global alerts and promote/demote users
-
----
-
 ## Setup
 
-Clone this repo to your desktop and run `npm install` to install all the dependencies.
+1.  **Clone the repo to your desktop using git**
 
-You might want to look into `config.json` to make change the port you want to use and set up a SSL certificate.
+    ```bash
 
----
+    git clone https://github.com/AnthonyTGarrett/popular_streaming.git
+    ```
+
+2.  **Change directory into the cloned folder**
+
+    ```bash
+    cd popular_streaming
+    ```
+
+3.  **Change directory into the backend folder and install dependencies**
+
+    ```bash
+    cd backend
+    npm install
+    ```
+
+4.  **Change directory into the frontend folder and install dependencies**
+    ```bash
+    cd ../frontend
+    npm install
+    ```
 
 ## Usage
 
