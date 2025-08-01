@@ -8,8 +8,6 @@ const client = new streamingAvailability.Client(
   })
 );
 
-// tt0068646
-
 // @desc Get show by ID
 // @route GET /api/id
 

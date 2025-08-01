@@ -129,7 +129,7 @@ const Register = () => {
 
           <button
             type='submit'
-            className='text-2xl py-2 px-6 rounded-2xl ring-[var(--pink)] bg-[var(--pink)] shadow-inner'
+            className='text-2xl py-2 px-6 rounded-2xl ring-[var(--pink)] bg-[var(--pink)] shadow-inner cursor-pointer'
           >
             Register
           </button>
