@@ -1,5 +1,7 @@
 # Popular Streaming
 
+![alt text](img/home_form_showing.png)
+
 ## Project Overview
 
 This is full-stack web application that allows the users to search for tv shows and movies that are streaming across many services. The user can login to save their own watch list and list of previously seen shows. While the user is logged it all of the shows will highlight the ones from their watch list and previously seen lists.
@@ -7,6 +9,8 @@ This is full-stack web application that allows the users to search for tv shows 
 ## Tech Overview
 
 3rd Party API that finds information about shows on
+
+- [Streaming Availability](https://www.movieofthenight.com/about/api)
 
 Backend Stack
 
@@ -40,14 +44,19 @@ Frontend Stack
 3.  **Change directory into the backend folder and install dependencies**
 
     ```bash
-    cd backend
+    cd popular_streaming/backend
     npm install
     ```
 
 4.  **Change directory into the frontend folder and install dependencies**
     ```bash
-    cd ../frontend
+    cd popular_streaming/frontend
     npm install
+    ```
+5.  **You will need an environment file for the backend to access the API**
+
+    ```bash
+    cd popular_streaming/backend
     ```
 
 ## Usage
