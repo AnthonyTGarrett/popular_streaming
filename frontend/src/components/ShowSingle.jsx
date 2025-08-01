@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from './Spinner';
 import WatchButtons from './WatchButtons';
+import { useWatch } from '../hooks/WatchProvider';
 
 const ShowSingle = ({ id }) => {
   const [show, setShow] = useState({});
   const [loading, setLoading] = useState(true);
   let isLoggedIn = false;
+
+  const { setSyncVar } = useWatch();
 
   if (localStorage.getItem('user')) {
     isLoggedIn = true;
@@ -14,6 +17,7 @@ const ShowSingle = ({ id }) => {
 
   useEffect(() => {
     const fetchShowData = async () => {
+      setSyncVar(prev => prev + 1);
       try {
         const url = `http://localhost:8080/api/${id}`;
 

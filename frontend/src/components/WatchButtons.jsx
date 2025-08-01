@@ -84,7 +84,7 @@ const WatchButtons = ({ show }) => {
       {seen ? (
         <button
           className='cursor-pointer rounded-lg border-1 border-gray-200
-   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#33] text-xs md:text-sm text-center flex justify-center items-center gap-2'
+   py-1 px-2 font-bold text-gray-100 transition-colors duration-200 ease-in-out bg-[#333] text-xs md:text-sm text-center flex justify-center items-center gap-2'
           data-event='markNotSeen'
           onClick={handleClicks}
         >

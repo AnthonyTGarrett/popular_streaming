@@ -382,7 +382,6 @@ export const getWatched = async (req, res, next) => {
 export const getWatchList = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
-  console.log(user_id);
 
   const sql = `SELECT * FROM ShowsToWatch WHERE user_id = ?`;
   let data = { Shows: [] };
