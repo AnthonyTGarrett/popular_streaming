@@ -36,7 +36,7 @@ Frontend Stack
 | **Persist data to an internal API and make the stored data accessible in your app.**                                                                                                  | • All entered form data is stored to local storage to save the user's progress<br>• All user information and watchlist information are stored in a database                                                                                         |
 | **Responsive Design**                                                                                                                                                                 | • Implemented responsive design using grid and flexbox<br>• Used tailwindCSS to create a mobile first approach                                                                                                                                      |
 | **Create a node.js web server using a modern framework such as Express.js.**                                                                                                          | • Implemented a node.js web server using Express to act as a proxy for 3rd Party API calls<br> • The same Express API handles multiple routes to manage users and user show list information                                                        |
-| **Interact with a SQLite database to store and retrieve information**                                                                                                                 | • Implemented a SQLite database that stores all user information including hashed passwords stored securely<br>• Implemented tables that store users, shows that are up next for the user, and shows that have already been watche dby the user<br> |
+| **Interact with a SQLite database to store and retrieve information**                                                                                                                 | • Implemented a SQLite database that stores all user information including hashed passwords stored securely<br>• Implemented tables that store users, shows that are up next for the user, and shows that have already been watched by the user<br> |
 | **Develop your project using a common JavaScript framework such as React, Svelte, or Vue.**                                                                                           | • Implemented the frontend using the ReactJS library<br>• React allows for an enhanced user experience like real-time updates to the information requested by the user through forms                                                                |
 
 ---
@@ -72,7 +72,7 @@ Frontend Stack
     cd popular_streaming/backend
     ```
 
-    Paste the provided .env file into the backend folder with the .env name
+    Paste the provided .env file into the backend folder with the .env name.
     The content will be the following but with a valid private API key
 
     ```bash
