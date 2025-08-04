@@ -78,7 +78,7 @@ Frontend Stack
     ```bash
     PORT = 8080
     CLIENT_ID = My_Private_API_key
-    secretKey = 'This#isSecretkeyed(yup)';
+    secretKey = secret_key;
     ```
 
 6.  **Run the App and navigate to http://localhost:5173**
