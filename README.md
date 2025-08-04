@@ -73,7 +73,7 @@ Frontend Stack
     ```
 
     Paste the provided .env file into the backend folder with the .env name.
-    The content will be the following but with a valid private API key
+    The content will similar to the following but with a valid private API key and secret key
 
     ```bash
     PORT = 8080
