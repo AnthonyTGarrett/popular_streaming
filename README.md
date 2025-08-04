@@ -84,7 +84,7 @@ Frontend Stack
     secretKey = secret_key;
     ```
 
-7.  **Run the App and navigate to http://localhost:5173**
+7.  **Run the App from the popular_streaming folder and navigate to http://localhost:5173**
 
     ```bash
     npm start
