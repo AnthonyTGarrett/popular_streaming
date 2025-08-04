@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-This is full-stack web application that allows the users to search for tv shows and movies that are streaming across many services. The user can login to save their own watch list and list of previously seen shows. While the user is logged it all of the shows will highlight the ones from their watch list and previously seen lists.
+This is a full-stack web application that allows the users to search for tv shows and movies that are streaming across many services. The user can login to save their own watch list and list of previously watched shows. While the user is logged in, the app will highlight shows that have been seen and are on the current watchlist.
 
 ## Tech Overview
 
