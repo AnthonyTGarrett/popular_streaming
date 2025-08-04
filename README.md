@@ -43,8 +43,8 @@ Frontend Stack
 
 ## Setup
 
-1.  **This project requires that you have nodejs and npm installed on your PC to run correctly**
-    Please go to [NodeJS](https://nodejs.org/en) to ensure these are installed<br></br>
+1.  **This project requires that you have nodejs and npm installed on your PC to run correctly**<br></br>
+    Please go to [NodeJS](https://nodejs.org/en) to ensure these are installed
 2.  **Clone the repo to your desktop using git**
 
     ```bash
