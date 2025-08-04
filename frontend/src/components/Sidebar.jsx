@@ -4,6 +4,8 @@ import genres from '../assets/genres';
 
 const Sidebar = ({ formData, onFormChange, onFormSubmit, setFormData }) => {
   const resetForm = () => {
+    const keywordForm = document.getElementById('keyword');
+    keywordForm.value = '';
     setFormData({
       country: 'us',
       catalogs: [''],
