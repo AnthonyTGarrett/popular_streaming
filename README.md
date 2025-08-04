@@ -43,30 +43,32 @@ Frontend Stack
 
 ## Setup
 
-1.  **Clone the repo to your desktop using git**
+1.  **This project requires that you have nodejs and npm installed on your PC to run correctly**
+    Please go to [NodeJS](https://nodejs.org/en) to ensure these are installed<br></br>
+2.  **Clone the repo to your desktop using git**
 
     ```bash
 
     git clone https://github.com/AnthonyTGarrett/popular_streaming.git
     ```
 
-2.  **Change directory into the cloned folder**
+3.  **Change directory into the cloned folder**
 
     ```bash
     cd popular_streaming
     ```
 
-3.  **Install the base dependency to run the project**
+4.  **Install the base dependency to run the project**
 
     ```bash
     npm install
     ```
 
-4.  **Install all dependency for frontend and backend**
+5.  **Install all dependency for frontend and backend**
     ```bash
     npm run installAll
     ```
-5.  **You will need an environment file for the backend to access the API**
+6.  **You will need an environment file for the backend to access the API**
 
     ```bash
     cd popular_streaming/backend
@@ -81,7 +83,7 @@ Frontend Stack
     secretKey = secret_key;
     ```
 
-6.  **Run the App and navigate to http://localhost:5173**
+7.  **Run the App and navigate to http://localhost:5173**
 
     ```bash
     npm start
