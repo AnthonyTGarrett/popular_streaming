@@ -43,8 +43,8 @@ Frontend Stack
 
 ## Setup
 
-1.  **This project requires that you have nodejs and npm installed on your PC to run correctly**<br></br>
-    Please go to [NodeJS](https://nodejs.org/en) to ensure these are installed
+1.  **This project requires that you have nodejs and npm installed on your PC to run correctly**
+    - Please go to [NodeJS](https://nodejs.org/en) to ensure these are installed
 2.  **Clone the repo to your desktop using git**
 
     ```bash
@@ -74,8 +74,9 @@ Frontend Stack
     cd popular_streaming/backend
     ```
 
-    Paste the provided .env file into the backend folder with the .env name.
-    The content will similar to the following but with a valid private API key and secret key
+    - Paste the provided .env file into the backend folder with the .env name.
+
+    - The content will similar to the following but with a valid private API key and secret key
 
     ```bash
     PORT = 8080
