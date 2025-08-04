@@ -28,16 +28,16 @@ Frontend Stack
 
 ## Features
 
-| Requirement                                                                                                                                                                           | Implementation                                                                                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Retrieve data from a third-party API**                                                                                                                                              | • Integrated Nutritionix API for food nutrition data<br>• Implemented YouTube API for video metadata                                       |
-| **Use a regular expression to validate user input and either prevent the invalid input or inform the user about it (in all cases prevent invalid input from being stored or saved).** | • Built a robust Express server with multiple routes<br>• Implemented API endpoints for nutrition and YouTube data                         |
-| **Use arrays, objects to store and retrieve information**                                                                                                                             | • Created a comprehensive workout database using JavaScript objects<br>• Organized exercises in categorized arrays (push/pull/legs)        |
-| **Persist data to an internal API and make the stored data accessible in your app.**                                                                                                  | • Designed organized exercise cards with clear visual hierarchy<br>• Created macro-calculator with specific results                        |
-| **Responsive Design**                                                                                                                                                                 | • Implemented responsive layouts using Flexbox<br>• Created media queries for different screen sizes<br>• Built with mobile-first approach |
-| **Create a node.js web server using a modern framework such as Express.js.**                                                                                                          | • Implemented responsive layouts using Flexbox<br>• Created media queries for different screen sizes<br>• Built with mobile-first approach |
-| **Interact with a SQLite database to store and retrieve information**                                                                                                                 | • Implemented responsive layouts using Flexbox<br>• Created media queries for different screen sizes<br>• Built with mobile-first approach |
-| **Develop your project using a common JavaScript framework such as React, Svelte, or Vue.**                                                                                           | • Implemented responsive layouts using Flexbox<br>• Created media queries for different screen sizes<br>• Built with mobile-first approach |
+| Requirement                                                                                                                                                                           | Implementation                                                                                                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Retrieve data from a third-party API**                                                                                                                                              | • Integrated [Streaming Availability API](https://www.movieofthenight.com/about/api) to access information about streaming shows<br>                                                                                                                |
+| **Use a regular expression to validate user input and either prevent the invalid input or inform the user about it (in all cases prevent invalid input from being stored or saved).** | • Implemented regular expressions to validate all information to the routes accessing the 3rd Party API<br>• Implemented regular expressions to valid email addresses entered when registering an account                                           |
+| **Use arrays, objects to store and retrieve information**                                                                                                                             | • All returned information from the Express backend is in array and object format<br>• The arrays and objects are manipulated to iterate over the information and present it to the user.                                                           |
+| **Persist data to an internal API and make the stored data accessible in your app.**                                                                                                  | • All entered form data is stored to local storage to save the user's progress<br>• All user information and watchlist information are stored in a database                                                                                         |
+| **Responsive Design**                                                                                                                                                                 | • Implemented responsive design using grid and flexbox<br>• Used tailwindCSS to create a mobile first approach                                                                                                                                      |
+| **Create a node.js web server using a modern framework such as Express.js.**                                                                                                          | • Implemented a node.js web server using Express to act as a proxy for 3rd Party API calls<br> • The same Express API handles multiple routes to manage users and user show list information                                                        |
+| **Interact with a SQLite database to store and retrieve information**                                                                                                                 | • Implemented a SQLite database that stores all user information including hashed passwords stored securely<br>• Implemented tables that store users, shows that are up next for the user, and shows that have already been watche dby the user<br> |
+| **Develop your project using a common JavaScript framework such as React, Svelte, or Vue.**                                                                                           | • Implemented the frontend using the ReactJS library<br>• React allows for an enhanced user experience like real-time updates to the information requested by the user through forms                                                                |
 
 ---
 
@@ -56,31 +56,42 @@ Frontend Stack
     cd popular_streaming
     ```
 
-3.  **Change directory into the backend folder and install dependencies**
+3.  **Install the base dependency to run the project**
 
     ```bash
-    cd popular_streaming/backend
     npm install
     ```
 
-4.  **Change directory into the frontend folder and install dependencies**
+4.  **Install all dependency for frontend and backend**
     ```bash
-    cd popular_streaming/frontend
-    npm install
+    npm run installAll
     ```
 5.  **You will need an environment file for the backend to access the API**
+
     ```bash
     cd popular_streaming/backend
-    touch .env
+    ```
+
+    Paste the provided .env file into the backend folder with the .env name
+    The content will be the following but with a valid private API key
+
+    ```bash
+    PORT = 8080
+    CLIENT_ID = My_Private_API_key
+    secretKey = 'This#isSecretkeyed(yup)';
+    ```
+
+6.  **Run the App and navigate to http://localhost:5173**
+
+    ```bash
+    npm start
     ```
 
 ## Usage
 
-After you clone this repo to your desktop, go to its root directory and run `npm install` to install its dependencies.
+After first startup you will have to create a new user to be able to save shows to your watchlist and to view the watched and next up lists.
 
-Once the dependencies are installed, you can run `npm start` to start the application. You will then be able to access it at localhost:3000
-
-To give yourself administrator permissions on the chat, you will have to type `/role [your-name]` in the app console.
+This can be done at http://localhost:5173/register
 
 ---
 
@@ -89,3 +100,7 @@ To give yourself administrator permissions on the chat, you will have to type `/
 > You can check out the full license [here](https://github.com/IgorAntun/node-chat/blob/master/LICENSE)
 
 This project is licensed under the terms of the **MIT** license.
+
+```
+
+```

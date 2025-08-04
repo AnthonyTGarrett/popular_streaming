@@ -1,0 +1,24 @@
+{
+  "name": "popular_streaming",
+  "version": "1.0.0",
+  "description": "![alt text](img/home_form_showing.png)",
+  "main": "index.js",
+  "scripts": {
+    "installAll": "concurrently \"cd frontend && npm install\" \"cd backend && npm install\"",
+    "start": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyTGarrett/popular_streaming.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnthonyTGarrett/popular_streaming/issues"
+  },
+  "homepage": "https://github.com/AnthonyTGarrett/popular_streaming#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
