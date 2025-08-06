@@ -1,5 +1,11 @@
 import jwt from 'jsonwebtoken';
 
+/**
+ * @description A middleware function that verifies the user is logged in with a valid jwt token
+ * @param {object} req - The Express request object.
+ * @param {object} res - The Express response object.
+ * @param {function} next - The next middleware function in the stack.
+ */
 export const checkToken = (req, res, next) => {
   const token = req.header('Authorization');
 

@@ -8,17 +8,13 @@ const client = new streamingAvailability.Client(
   })
 );
 
-// @desc Get show by ID
-// @route GET /api/id
-
 /**
- * @route GET /api/users
- * @summary Get all users
- * @description Retrieves a list of all registered users from the database.
- * @returns {array<object>} 200 - An array of user objects.
- * @returns {object} 500 - Server error.
+ * @route GET /api/id
+ * @description Retrieves a single show object from the streaming availability API
+ * @returns {<object>} 200 - Single show object
+ * @returns {object} 404 - Server error if call didn't return a result
+ * @returns {object} 400 - Server error if the show ID is not a valid format
  */
-
 export const getShowFromId = async (req, res, next) => {
   // Testing the passed parameter for being non-empty, alphanumeric only and allowing underscores
   const idTest = /^[a-zA-Z0-9_]+$/;
@@ -42,9 +38,13 @@ export const getShowFromId = async (req, res, next) => {
   }
 };
 
-// @desc Get show from Title
-// @route POST /api/search/title/:title
-
+/**
+ * @route GET /api/search/title/:title
+ * @description Retrieves an array of up to 20 show objects matching title searches from the API
+ * @returns {array<object>} 200 - Array of show objects matching the search title string
+ * @returns {object} 404 - Server error if call didn't return a result
+ * @returns {object} 400 - Server error if the title isn't valid
+ */
 export const getShowFromTitle = async (req, res, next) => {
   // Testing the passed parameter for being non-empty, alphanumeric only and allowing spaces
   const titleTest = /^[a-zA-Z0-9 ]+$/;
@@ -74,9 +74,13 @@ export const getShowFromTitle = async (req, res, next) => {
   }
 };
 
-// @desc Get Top Series by Service
-// @route PUT /api/top/series/:service
-
+/**
+ * @route GET /api/top/series/:series'
+ * @description Retrieves an array of up to 20 show objects of service provided top shows
+ * @returns {array<object>} 200 - Array of top show objects
+ * @returns {object} 404 - Server error if call didn't return a result
+ * @returns {object} 400 - Server error if the service isn't valid
+ */
 export const getTopSeries = async (req, res, next) => {
   const serviceTest = /^[a-zA-Z0-9]+$/;
   const service = req.params.series;
@@ -108,9 +112,13 @@ export const getTopSeries = async (req, res, next) => {
   }
 };
 
-// @desc Get Top Movies by Service
-// @route PUT /api/top/movies/:service
-
+/**
+ * @route GET /api/top/movies/:movie
+ * @description Retrieves an array of up to 20 show objects of service provided top shows
+ * @returns {array<object>} 200 - Array of top show objects
+ * @returns {object} 404 - Server error if call didn't return a result
+ * @returns {object} 400 - Server error if the service isn't valid
+ */
 export const getTopMovies = async (req, res, next) => {
   const serviceTest = /^[a-zA-Z0-9]+$/;
   const service = req.params.movie;
@@ -142,8 +150,13 @@ export const getTopMovies = async (req, res, next) => {
   }
 };
 
-// @desc Series and Movies by multiple filters
-// @route GET /api/search/filters
+/**
+ * @route POST /api/search/filters/
+ * @description Retrieves an array of up to 20 show objects matching the filters
+ * @returns {array<object>} 200 - Array of up to 20 show objects matching the given filters
+ * @returns {object} 404 - Server error if call didn't return a result
+ * @returns {object} 400 - Server error if the service isn't valid
+ */
 export const getShowFromFilter = async (req, res, next) => {
   const incoming = req.body;
 
@@ -151,6 +164,7 @@ export const getShowFromFilter = async (req, res, next) => {
   let pages = 0;
   const PAGES_TO_FETCH = 1;
 
+  // Written in the format of paging just in case I want to increase the amount of results found with each filter call
   try {
     let response = await client.showsApi.searchShowsByFilters(incoming);
     while (response.hasMore && pages < PAGES_TO_FETCH) {
@@ -168,6 +182,12 @@ export const getShowFromFilter = async (req, res, next) => {
   }
 };
 
+/**
+ * @route GET /api/genres/getAllGenres
+ * @description Retrieves all possible genres for shows
+ * @returns {array<object>} 200 - Array of all genres as objects
+ * @returns {object} 404 - Server error if call didn't return a result
+ */
 export const getAllGenres = async (req, res, next) => {
   try {
     const data = await client.genresApi.getGenres({

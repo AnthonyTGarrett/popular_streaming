@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import axios from 'axios';
 
 // Function for simply testing pulling user information out of the database
-// Not for production use
+// FOR TESTING PURPOSES ONLY
 // export const getUsers = (req, res, next) => {
 //   res.set('content-type', 'application/json');
 //   const sql = 'SELECT * FROM users';
@@ -32,8 +32,13 @@ import axios from 'axios';
 //   }
 // };
 
-// Function to add a new User to the database
-// Requires 5 pieces of information to add a new user
+/**
+ * @route POST /users/register
+ * @summary Requires 5 pieces of information in the body of the request
+ * @description Creates a new user in the database if all of the correct information is provided
+ * @returns {object} 200 - An object containing the status and the first and last name of the added user
+ * @returns {object} 400 - Server error if unable to add the user for any of the failed tests
+ */
 export const addUser = async (req, res, next) => {
   res.set('content-type', 'application/json');
 
@@ -101,6 +106,13 @@ export const addUser = async (req, res, next) => {
   }
 };
 
+/**
+ * @route POST /users/login
+ * @summary Requires a username and password in the body
+ * @description Verifies the users login credentials and returns JWT token if successful
+ * @returns {object} 200 - A token is returned with a payload of the userId
+ * @returns {object} 400 - Server error if an invalid username or password
+ */
 export const login = async (req, res, next) => {
   const { username, password } = req.body;
 
@@ -129,6 +141,13 @@ export const login = async (req, res, next) => {
   }
 };
 
+/**
+ * @route POST /users/addWatchedShow
+ * @summary Requires a logged in user token in the authorization header and imdbId in the body
+ * @description Pulls the information from the id from the API and adds the show to the database for the logged in user
+ * @returns {object} 201 - An object with the status and message of what show was added to the database
+ * @returns {object} 400 - Server error if unable to add the show to the database for any reason
+ */
 export const addWatchedShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
 
@@ -202,18 +221,20 @@ export const addWatchedShow = async (req, res, next) => {
     return next(error);
   }
 };
+
+/**
+ * @route POST /users/addWatchListShow
+ * @summary Requires a logged in user token in the authorization header and imdbId in the body
+ * @description Pulls the information from the id from the API and adds the show to the database for the logged in user
+ * @returns {object} 201 - An object with the status and message of what show was added to the database
+ * @returns {object} 400 - Server error if unable to add the show to the database for any reason
+ */
 export const addWatchListShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
   const showWatchedTest = `SELECT * FROM ShowsWatched WHERE imdbId = ? AND user_id = ?`;
   const showsToWatchTest = `SELECT * FROM ShowsToWatch WHERE imdbId = ? AND user_id = ?`;
   const imdbId = req.body.imdbId;
-
-  // if (await fetchFirst(db, showWatchedTest, [imdbId, user_id])) {
-  //   const error = new Error('You have already seen this show.');
-  //   error.status = 400;
-  //   return next(error);
-  // }
 
   if (await fetchFirst(db, showsToWatchTest, [imdbId, user_id])) {
     const error = new Error('This show is already on your watch list.');
@@ -277,6 +298,13 @@ export const addWatchListShow = async (req, res, next) => {
   }
 };
 
+/**
+ * @route DELETE /users/delWatchedShow
+ * @summary Requires a logged in user token in the authorization header and show Id to be deleted
+ * @description Deletes the database entry for the given show for the logged in user
+ * @returns {object} 200 - An object with the status and message that the show was deleted from the database
+ * @returns {object} 400 - Server error if unable to delete the show for any reason
+ */
 export const delWatchedShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
@@ -307,6 +335,14 @@ export const delWatchedShow = async (req, res, next) => {
     return next(error);
   }
 };
+
+/**
+ * @route DELETE /users/delWatchListShow
+ * @summary Requires a logged in user token in the authorization header
+ * @description Returns a json object containing a Shows array of database entries
+ * @returns {object} 200 - An object containing the Shows array of database entries
+ * @returns {object} 400 - Server error if unable to add the user for any of the failed tests
+ */
 export const delWatchListShow = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
@@ -338,7 +374,13 @@ export const delWatchListShow = async (req, res, next) => {
   }
 };
 
-// Returns all shows in the users watched table
+/**
+ * @route POST /users/watched
+ * @summary Requires a logged in user token in the authorization header
+ * @description Returns a json object containing a Shows array of database entries
+ * @returns {object} 200 - An object containing the Shows array of database entries
+ * @returns {object} 400 - Server error if unable retrieve the database entries
+ */
 export const getWatched = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
@@ -379,6 +421,13 @@ export const getWatched = async (req, res, next) => {
   }
 };
 
+/**
+ * @route POST /users/watchList
+ * @summary Requires a logged in user token in the authorization header
+ * @description Returns a json object containing a Shows array of database entries
+ * @returns {object} 200 - An object containing the Shows array of database entries
+ * @returns {object} 400 - Server error if unable to add the user for any of the failed tests
+ */
 export const getWatchList = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
@@ -418,6 +467,14 @@ export const getWatchList = async (req, res, next) => {
   }
 };
 
+/**
+ * NOT USED IN FINAL PROJECT YET
+ * @route DELETE /users/clearWatched
+ * @summary Requires a logged in user token in the authorization header
+ * @description Deletes all entries in the database for watched shows
+ * @returns {object} 200 - An object containing the status and a message of successful clearing
+ * @returns {object} 400 - Server error if unable to clear the watched shows
+ */
 export const clearWatched = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
@@ -440,6 +497,15 @@ export const clearWatched = async (req, res, next) => {
     return next(error);
   }
 };
+
+/**
+ * NOT USED IN FINAL PROJECT YET
+ * @route DELETE /users/clearWatchList
+ * @summary Requires a logged in user token in the authorization header
+ * @description Deletes all entries in the database for watch list shows
+ * @returns {object} 200 - An object containing the status and a message of successful clearing
+ * @returns {object} 400 - Server error if unable to clear the watch list shows
+ */
 export const clearWatchList = async (req, res, next) => {
   const token = req.header('Authorization').split(' ')[1];
   const user_id = jwt.decode(token).userId;
@@ -463,9 +529,11 @@ export const clearWatchList = async (req, res, next) => {
   }
 };
 
-// Function to hash the password
-// This function is used to hash the password with bcrypt before storing it in the database
-
+/**
+ * @description A function to hash the users password before storing it in the database
+ * @param {string} password - The users password
+ * @returns {string} hash - The users password after hashing by bcrypt
+ */
 async function hashPassword(password) {
   try {
     const saltRounds = 10;
@@ -478,8 +546,14 @@ async function hashPassword(password) {
   }
 }
 
-// Wrapper function taken directly from the sqlitetutorial.net site that make fetching from the db easier and uses promises to do it
+/**
 
+ * @description Wrapper function taken directly from the sqlitetutorial.net site that make fetching from the db easier and uses promises to do it
+ * @param {object} db - The database object
+ * @param {object} sql - The sql command
+ * @param {object} params - Variables to insert into the sql command
+ * @return {promise} - Promise of the result of the database search for the first instance found
+ */
 export const fetchFirst = async (db, sql, params) => {
   return new Promise((resolve, reject) => {
     db.get(sql, params, (err, row) => {

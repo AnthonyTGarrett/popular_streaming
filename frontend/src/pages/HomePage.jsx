@@ -72,7 +72,7 @@ const HomePage = () => {
   return (
     <>
       <MainHeader formData={formData} />
-      <main className='grid grid-cols-1 sm:grid-cols-[25%_75%] md:grid-cols-[35%_65%] lg:grid-cols-[35%_65%] xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[50px] mb-10 min-h-[100vh]'>
+      <main className='grid grid-cols-1 md:grid-cols-[40%_60%] lg:grid-cols-[35%_65%] xl:grid-cols-[25%_75%] 2xl:xl:grid-cols-[20%_80%] gap-1.5 text-white pt-[50px] mb-10 min-h-[100vh]'>
         <Sidebar
           setFormData={setFormData}
           formData={formData}

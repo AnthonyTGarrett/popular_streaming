@@ -74,8 +74,19 @@ body {
   }
 }
 
-@media screen and (min-width: 650px) and (max-width: 1000px) {
+@media (orientation: landscape) {
   main {
-    padding-top: 6rem;
+    padding-top: 3rem;
+  }
+
+  .sidebar {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+  }
+
+  aside {
+    margin: 0;
+    padding: 0;
   }
 }

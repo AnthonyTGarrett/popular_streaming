@@ -1,13 +1,16 @@
 import sqlite3 from 'sqlite3';
 
+// Setup sqlite3 to verbose to show errors mainly for testing
 const sql3 = sqlite3.verbose();
 
+// Opening the database or creating it if it doesn't exist
 const db = new sql3.Database(
   './users.db',
   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
   connected
 );
 
+// Displaying an error message if the database fails
 function connected(err) {
   if (err) {
     console.error('Error connecting to the database:', err.message);
@@ -15,14 +18,12 @@ function connected(err) {
   console.log('Connected to the SQLite database.');
 }
 
-// Create the three tables I will need in the database
-// One table to hold user information, one table for shows that have already been watched and one table for watchlist shows
-// Both of the show tables are the same and will be used to quickly access info to be displayed for the user home screen
-//
-//
-// This database schema was setup using Google Gemini as I have very little experience in creating a table setup
-//
-
+/**
+ * @summary Create one table to hold the user information, one table for the watched shows, and one table for shows to watch. Both tables will hold similar entries
+ * @description A middleware function that logs the HTTP method and URL of incoming requests.
+ *
+ * THIS DATABASE SCHEMA WAS CREATED USING GOOGLE GEMINI AS I HAVE VERY LITTLE EXPERIENCE IN CREATING ANY KIND OF TABLE SETUP
+ */
 let sql0 = `CREATE TABLE IF NOT EXISTS Users (
   user_id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT NOT NULL UNIQUE,
@@ -61,7 +62,7 @@ let sql2 = `
   FOREIGN KEY (user_id) REFERENCES Users(user_id));
 `;
 
-// Using serialize to create tables back to back in order
+// Creates one table at a time in sequence
 db.serialize(() => {
   try {
     db.run(sql0, err => {

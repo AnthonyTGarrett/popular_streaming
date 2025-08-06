@@ -137,7 +137,7 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit, setFormData }) => {
           </select>
         </div>
         <div
-          className={`hidden lg:grid mb-5 grid-cols-[50%_50%] gap-y-3 gap-x-2`}
+          className={`hidden lg:grid mb-5 grid-cols-[50%_50%] gap-y-3 gap-x-0 md:gap-x-2`}
         >
           {genres.map((genre, index) => (
             <Checkbox
