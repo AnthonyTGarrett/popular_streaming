@@ -1,6 +1,5 @@
 import express from 'express';
 import {
-  getUsers,
   addUser,
   getWatched,
   getWatchList,
@@ -16,7 +15,8 @@ import checkToken from '../middleware/auth.js';
 
 const userRouter = express.Router();
 
-userRouter.get('/', getUsers);
+// Route for testing only
+// userRouter.get('/', getUsers);
 userRouter.post('/register', addUser);
 userRouter.post('/login', login);
 

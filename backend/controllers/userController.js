@@ -5,32 +5,32 @@ import axios from 'axios';
 
 // Function for simply testing pulling user information out of the database
 // Not for production use
-export const getUsers = (req, res, next) => {
-  res.set('content-type', 'application/json');
-  const sql = 'SELECT * FROM users';
-  let data = { users: [] };
-  try {
-    db.all(sql, [], (err, rows) => {
-      if (err) {
-        throw err;
-      }
-      rows.forEach(row => {
-        data.users.push({
-          id: row.id,
-          username: row.username,
-          email: row.email,
-          password: row.password,
-          firstName: row.firstName,
-          lastName: row.lastName,
-        });
-      });
-      res.status(200).json(data);
-    });
-  } catch (err) {
-    console.error('Error: ', err.message);
-    res.status(400);
-  }
-};
+// export const getUsers = (req, res, next) => {
+//   res.set('content-type', 'application/json');
+//   const sql = 'SELECT * FROM users';
+//   let data = { users: [] };
+//   try {
+//     db.all(sql, [], (err, rows) => {
+//       if (err) {
+//         throw err;
+//       }
+//       rows.forEach(row => {
+//         data.users.push({
+//           id: row.id,
+//           username: row.username,
+//           email: row.email,
+//           password: row.password,
+//           firstName: row.firstName,
+//           lastName: row.lastName,
+//         });
+//       });
+//       res.status(200).json(data);
+//     });
+//   } catch (err) {
+//     console.error('Error: ', err.message);
+//     res.status(400);
+//   }
+// };
 
 // Function to add a new User to the database
 // Requires 5 pieces of information to add a new user

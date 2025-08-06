@@ -11,6 +11,14 @@ const client = new streamingAvailability.Client(
 // @desc Get show by ID
 // @route GET /api/id
 
+/**
+ * @route GET /api/users
+ * @summary Get all users
+ * @description Retrieves a list of all registered users from the database.
+ * @returns {array<object>} 200 - An array of user objects.
+ * @returns {object} 500 - Server error.
+ */
+
 export const getShowFromId = async (req, res, next) => {
   // Testing the passed parameter for being non-empty, alphanumeric only and allowing underscores
   const idTest = /^[a-zA-Z0-9_]+$/;
