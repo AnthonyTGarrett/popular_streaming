@@ -100,12 +100,12 @@ This can be done at http://localhost:5173/register
 
 ---
 
+## Citation
+
+> Google Gemini was used to create the database schema for this project
+
 ## License
 
 > You can check out the full license [here](https://github.com/IgorAntun/node-chat/blob/master/LICENSE)
 
 This project is licensed under the terms of the **MIT** license.
-
-```
-
-```
