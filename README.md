@@ -74,9 +74,10 @@ Frontend Stack
     cd popular_streaming/backend
     ```
 
-    - Paste the provided .env file into the backend folder with the .env name.
+    - Paste the provided .env file into the backend folder
+      **Make sure to rename the file to .env**
 
-    - The content will similar to the following but with a valid private API key and secret key
+    - The content will be similar to the following but with a valid private API key and secret key
 
     ```bash
     PORT = 8080
