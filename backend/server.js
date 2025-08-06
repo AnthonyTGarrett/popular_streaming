@@ -8,13 +8,17 @@ const port = process.env.PORT || 8000;
 
 const app = express();
 
+// Setup cors to accept a request from any IP address
 app.use(cors());
 
+// Add ability to process body json
 app.use(express.json());
 
+// Add routes
 app.use('/users', userRoutes);
 app.use('/api', routes);
 
+// Add the errorHandler middleware
 app.use(errorHandler);
 
 // Generic error for url that the user tries to visit that isn't covered by the specific routes

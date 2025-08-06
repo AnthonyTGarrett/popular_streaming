@@ -83,7 +83,7 @@ Frontend Stack
     ```bash
     PORT = 8080
     CLIENT_ID = My_Private_API_key
-    secretKey = secret_key;
+    secretKey = secret_key
     ```
 
 7.  **Run the App from the popular_streaming folder and navigate to http://localhost:5173**
