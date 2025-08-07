@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext();
 
+// Custom Hook and Context API with functions to manipulate the state
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -11,6 +12,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   let decoded = '';
 
+  // Controls the login and saves user and token to local storage
   const loginAction = async data => {
     try {
       const response = await fetch('http://localhost:8080/users/login', {

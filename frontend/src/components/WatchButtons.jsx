@@ -2,14 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import { useWatch } from '../hooks/WatchProvider';
 
+/**
+ * A React Component that controls the buttons on the single page display so that they display correctly when the user is logged in / logged out and based on if the show is in the users shows watched or shows to watch list
+ * @returns The rendered component.
+ */
 const WatchButtons = ({ show }) => {
   const [seen, setSeen] = useState(false);
   const [watchList, setWatchList] = useState(false);
 
   const WatchLists = useWatch();
 
+  // Pulling values from the context API
   const { setSyncVar, watched, watching } = WatchLists;
 
+  // Functions that correspond to button functions to make changes to the variables in the context API
   const addToWatched = id => {
     WatchLists.addWatched(id);
     setSyncVar(prev => prev + 1);
@@ -27,6 +33,7 @@ const WatchButtons = ({ show }) => {
     setSyncVar(prev => prev + 1);
   };
 
+  // Switch to control button clicks based on the current states
   const handleClicks = e => {
     e.preventDefault();
 

@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * A React Component that binds to the formData and displays the checkbox with the information given in the props
+ * @returns The rendered component.
+ */
 const Checkbox = ({ genre, formData, onFormChange }) => {
   return (
     <div>

@@ -3,9 +3,14 @@ import { useEffect } from 'react';
 import ShowCard from './ShowCard';
 import { Link } from 'react-router-dom';
 
+/**
+ * A React Component that displays all of the shows that are in the currently logged in users watch list table
+ * @returns The rendered component.
+ */
 const WatchList = () => {
   const [shows, setShows] = useState([]);
 
+  // Checking for a logged in user to retrieve the watch list table shows
   useEffect(() => {
     const token = localStorage.getItem('token');
 

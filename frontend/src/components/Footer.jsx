@@ -1,6 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+/**
+ * A React Component that displays a simple footer conditionally if the page isn't the landing page
+ * @returns The rendered component.
+ */
 const Footer = () => {
   const location = useLocation();
   const isLandingPage = location.pathname === '/';

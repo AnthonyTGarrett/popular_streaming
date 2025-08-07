@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const WatchContext = createContext();
 
+// Custom Hook and Context API with functions to manipulate the state
 const WatchProvider = ({ children }) => {
   const [watched, setWatched] = useState([]);
   const [watching, setWatching] = useState([]);

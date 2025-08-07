@@ -4,18 +4,26 @@ import { useState } from 'react';
 import { useAuth } from '../hooks/AuthProvider';
 import logo from '../assets/img/logos/logo.png';
 
+/**
+ * A React Component that controls the navbar based on the current location in the app of the user and the user login status
+ * @returns The rendered component.
+ */
 const Navbar = () => {
   let isLoggedIn = false;
   const auth = useAuth();
+
+  // function that uses the NavLink active status to highlight the navbar link based on the route
   const linkClass = ({ isActive }) => {
     return isActive
       ? 'text-[#E0115F] transition hover:text-opacity-30'
       : 'hover:text-[#E0115F] transition';
   };
 
+  // Determining if the current route is the landing page
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
 
+  // State variable to control the display of the mobile menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   if (localStorage.getItem('token')) {
     isLoggedIn = true;
@@ -31,7 +39,6 @@ const Navbar = () => {
     <nav className={`bg-transparent w-full ${isLandingPage ? 'fixed' : ''}`}>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='flex flex-1 items-center justify-between md:items-stretch md:justify-start'>
-          {/* <!-- Logo --> */}
           <NavLink className='flex flex-shrink-0 items-center mr-10' to='/home'>
             <img className='h-auto w-50' src={logo} alt='Popular Streaming' />
           </NavLink>

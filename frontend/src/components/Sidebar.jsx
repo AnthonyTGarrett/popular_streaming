@@ -2,7 +2,12 @@ import Checkbox from './Checkbox';
 
 import genres from '../assets/genres';
 
+/**
+ * A React Component that displays the form to control all of the API calls for the displays on the HomePage page and showlist component
+ * @returns The rendered component.
+ */
 const Sidebar = ({ formData, onFormChange, onFormSubmit, setFormData }) => {
+  // function to reset all of the form values
   const resetForm = () => {
     const keywordForm = document.getElementById('keyword');
     keywordForm.value = '';
@@ -15,6 +20,8 @@ const Sidebar = ({ formData, onFormChange, onFormSubmit, setFormData }) => {
       orderBy: 'popularity_alltime',
     });
   };
+
+  // All form elements or binded to the formData state variable that is lifted to the HomePage
   return (
     <aside className='h-full px-3 pt-8 sm:pt-15 md:pt-15 bg-[#2c2c2c] grid grid-cols-1'>
       <form

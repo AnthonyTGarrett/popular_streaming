@@ -3,6 +3,10 @@ import ShowCard from './ShowCard';
 import Spinner from './Spinner';
 import { useWatch } from '../hooks/WatchProvider';
 
+/**
+ * A React Component that displays all of the show cards in a grid format. The component calls the API and iterates over the returned json and displays a show card for each entry
+ * @returns The rendered component.
+ */
 const ShowList = ({ formData }) => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,6 +17,8 @@ const ShowList = ({ formData }) => {
 
   const { setSyncVar } = watchLists;
 
+  // Call the API with the formData information
+  // Dependency array set to formData to re-render on it's change
   useEffect(() => {
     setLoading(true);
     window.scrollTo(0, 0);

@@ -4,6 +4,10 @@ import Spinner from './Spinner';
 import WatchButtons from './WatchButtons';
 import { useWatch } from '../hooks/WatchProvider';
 
+/**
+ * A React Component that displays a single show that is from the id prop passed to it
+ * @returns The rendered component.
+ */
 const ShowSingle = ({ id }) => {
   const [show, setShow] = useState({});
   const [loading, setLoading] = useState(true);
@@ -11,10 +15,12 @@ const ShowSingle = ({ id }) => {
 
   const { setSyncVar } = useWatch();
 
+  // Checks for the user localstorage for login
   if (localStorage.getItem('user')) {
     isLoggedIn = true;
   }
 
+  // Requests API call based on the given id on each component render
   useEffect(() => {
     const fetchShowData = async () => {
       setSyncVar(prev => prev + 1);

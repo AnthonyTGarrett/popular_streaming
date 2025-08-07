@@ -2,6 +2,10 @@ import React from 'react';
 import { FaStar } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * A React Component that displays the card that shows the show image and a small amount of information
+ * @returns The rendered component.
+ */
 const ShowCard = ({ show, seen = false, watching = false }) => {
   const navigate = useNavigate();
   let image = '';
@@ -11,6 +15,7 @@ const ShowCard = ({ show, seen = false, watching = false }) => {
     image = show.image;
   }
 
+  // Passing a state of the imdbId to the /show route to display the individual show that is on the card
   const displaySingle = () => {
     navigate('/show', { state: { id: show.imdbId } });
   };

@@ -1,3 +1,4 @@
+// Created an array of objects for the genres to save on API calls to fetch the same genres repeatedly
 const genres = [
   {
     id: 'action',
