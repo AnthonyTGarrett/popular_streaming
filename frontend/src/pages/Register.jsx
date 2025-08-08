@@ -2,6 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+/**
+ * A React Component that handles the registration and creation of a new user for the site
+ * @returns The rendered component.
+ */
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
@@ -14,6 +18,7 @@ const Register = () => {
     lastName: '',
   });
 
+  // Handles the users submission of the registration form
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -37,6 +42,7 @@ const Register = () => {
     }
   };
 
+  // Changes the user input based on form change
   const handleInput = e => {
     const { name, value } = e.target;
 

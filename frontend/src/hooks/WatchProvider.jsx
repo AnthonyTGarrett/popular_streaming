@@ -11,6 +11,7 @@ const WatchProvider = ({ children }) => {
 
   const token = localStorage.getItem('token');
 
+  // Loads the watched and watchlist information on change of the syncVar
   useEffect(() => {
     if (token) {
       const fetchData = async () => {
@@ -48,6 +49,7 @@ const WatchProvider = ({ children }) => {
     }
   }, [syncVar]);
 
+  // Adds the given show ID to the watched show list of the logged in user
   const addWatched = async imdbId => {
     if (token) {
       const fetchData = async () => {
@@ -72,6 +74,7 @@ const WatchProvider = ({ children }) => {
     }
   };
 
+  // Deletes the given show ID to the watched show list
   const delWatched = async imdbId => {
     if (token) {
       const fetchData = async () => {
@@ -96,6 +99,7 @@ const WatchProvider = ({ children }) => {
     }
   };
 
+  // Adds the given show ID to the watch list of the logged in user
   const addWatching = async imdbId => {
     if (token) {
       const fetchData = async () => {
@@ -120,6 +124,7 @@ const WatchProvider = ({ children }) => {
     }
   };
 
+  // Deletes the given show ID to the watched show list
   const delWatching = async imdbId => {
     if (token) {
       const fetchData = async () => {

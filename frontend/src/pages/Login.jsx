@@ -3,6 +3,10 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/AuthProvider';
 
+/**
+ * A React Component that handles the login process for the user. Uses the useAuth hook to call the loginAction function  to submit the username and password to get logged in to the app. Sets the error message to be displayed if it fails
+ * @returns The rendered component.
+ */
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -26,6 +30,7 @@ const Login = () => {
     }
   };
 
+  // Updates the userInput as the user types
   const handleInput = e => {
     const { name, value } = e.target;
 

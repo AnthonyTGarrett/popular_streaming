@@ -7,6 +7,7 @@ import disney from '../assets/img/logos/disney-dark.svg';
 import max from '../assets/img/logos/max-dark.svg';
 import hulu from '../assets/img/logos/hulu-dark.svg';
 
+// Static page that is the first page that the user sees when visiting the site. Provides access to the navbar and access to the app through buttons
 const LandingPage = () => {
   return (
     <section className='h-screen p-0 hero bg-cover'>

@@ -3,6 +3,10 @@ import Sidebar from '../components/Sidebar';
 import ShowList from '../components/ShowList';
 import MainHeader from '../components/MainHeader';
 
+/**
+ * A React Page that is used as a regular component to store the formData and the fonmchange and submit functions. These are passed down to the navbar and the showlist to display information based on the sidebar form data
+ * @returns The rendered component.
+ */
 const HomePage = () => {
   const initialState = {
     country: 'us',
@@ -13,6 +17,7 @@ const HomePage = () => {
     orderBy: 'popularity_alltime',
   };
 
+  // Lifted the state variables from the sidebar and show list to the homepage so that they are available from both
   const [formData, setFormData] = useState(() => {
     try {
       const storedData = localStorage.getItem('storedForm');
@@ -23,6 +28,7 @@ const HomePage = () => {
     }
   });
 
+  // Function to change the formData based on any user changes to the form on the sidebar
   const onFormChange = event => {
     const { name, value, checked } = event.target;
     if (name === 'showType' && !value) {
@@ -57,6 +63,7 @@ const HomePage = () => {
     setFormData(oldFormData => ({ ...oldFormData, [name]: value }));
   };
 
+  // Handles the event when the user submits the formData
   const onFormSubmit = event => {
     event.preventDefault();
 

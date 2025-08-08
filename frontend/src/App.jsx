@@ -10,6 +10,10 @@ import AuthProvider from './hooks/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
 import WatchProvider from './hooks/WatchProvider';
 
+/**
+ * Main app setup for the routes of the app. Creates the path for each of the pages that lets the app render each route inside the same html file. The Auth and WatchProviders are context APIs that wrap the app routes to make them available to the whole app
+
+ */
 function App() {
   return (
     <AuthProvider>
