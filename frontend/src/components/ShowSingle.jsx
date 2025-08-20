@@ -102,7 +102,7 @@ const ShowSingle = ({ id }) => {
             <h3 className='text-lg md:text-xl underline underline-offset-4 pl-4'>
               Directors
             </h3>
-            <p className='text-center text-gray-500 px-2'>
+            <p className=' text-gray-500 px-2'>
               {show.directors
                 ? show.directors.map((director, index) => (
                     <span key={index} className='text-base md:text-xl'>
@@ -124,7 +124,7 @@ const ShowSingle = ({ id }) => {
             <h3 className='text-lg md:text-xl underline underline-offset-4 pl-4'>
               Cast
             </h3>
-            <p className='text-center text-gray-500 px-2'>
+            <p className=' text-gray-500 px-2'>
               {show.cast.map((member, index) => (
                 <span key={index} className='text-base md:text-xl'>
                   {index === show.cast.length - 1 ? member : member + ', '}
